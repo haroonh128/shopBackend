@@ -1,0 +1,15 @@
+D:\Projects\Shop\ShopBackend\Shop.Entities\bin\Debug\net8.0\Shop.Entities.deps.json
+D:\Projects\Shop\ShopBackend\Shop.Entities\bin\Debug\net8.0\Shop.Entities.dll
+D:\Projects\Shop\ShopBackend\Shop.Entities\bin\Debug\net8.0\Shop.Entities.pdb
+D:\Projects\Shop\ShopBackend\Shop.Entities\obj\Debug\net8.0\Shop.Entities.GeneratedMSBuildEditorConfig.editorconfig
+D:\Projects\Shop\ShopBackend\Shop.Entities\obj\Debug\net8.0\Shop.Entities.AssemblyInfoInputs.cache
+D:\Projects\Shop\ShopBackend\Shop.Entities\obj\Debug\net8.0\Shop.Entities.AssemblyInfo.cs
+D:\Projects\Shop\ShopBackend\Shop.Entities\obj\Debug\net8.0\Shop.Entities.csproj.CoreCompileInputs.cache
+D:\Projects\Shop\ShopBackend\Shop.Entities\obj\Debug\net8.0\Shop.Entities.dll
+D:\Projects\Shop\ShopBackend\Shop.Entities\obj\Debug\net8.0\refint\Shop.Entities.dll
+D:\Projects\Shop\ShopBackend\Shop.Entities\obj\Debug\net8.0\Shop.Entities.pdb
+D:\Projects\Shop\ShopBackend\Shop.Entities\obj\Debug\net8.0\ref\Shop.Entities.dll
+D:\Projects\Shop\ShopBackend\Shop.Entities\obj\Debug\net8.0\Shop.Entities.csproj.AssemblyReference.cache
+D:\Projects\Shop\ShopBackend\Shop.Entities\bin\Debug\net8.0\Shop.Common.dll
+D:\Projects\Shop\ShopBackend\Shop.Entities\bin\Debug\net8.0\Shop.Common.pdb
+D:\Projects\Shop\ShopBackend\Shop.Entities\obj\Debug\net8.0\Shop.Ent.77336124.Up2Date

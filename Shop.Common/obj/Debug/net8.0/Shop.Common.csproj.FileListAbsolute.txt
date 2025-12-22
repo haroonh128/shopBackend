@@ -1,0 +1,12 @@
+D:\Projects\Shop\ShopBackend\Shop.Common\bin\Debug\net8.0\Shop.Common.deps.json
+D:\Projects\Shop\ShopBackend\Shop.Common\bin\Debug\net8.0\Shop.Common.dll
+D:\Projects\Shop\ShopBackend\Shop.Common\bin\Debug\net8.0\Shop.Common.pdb
+D:\Projects\Shop\ShopBackend\Shop.Common\obj\Debug\net8.0\Shop.Common.GeneratedMSBuildEditorConfig.editorconfig
+D:\Projects\Shop\ShopBackend\Shop.Common\obj\Debug\net8.0\Shop.Common.AssemblyInfoInputs.cache
+D:\Projects\Shop\ShopBackend\Shop.Common\obj\Debug\net8.0\Shop.Common.AssemblyInfo.cs
+D:\Projects\Shop\ShopBackend\Shop.Common\obj\Debug\net8.0\Shop.Common.csproj.CoreCompileInputs.cache
+D:\Projects\Shop\ShopBackend\Shop.Common\obj\Debug\net8.0\Shop.Common.dll
+D:\Projects\Shop\ShopBackend\Shop.Common\obj\Debug\net8.0\refint\Shop.Common.dll
+D:\Projects\Shop\ShopBackend\Shop.Common\obj\Debug\net8.0\Shop.Common.pdb
+D:\Projects\Shop\ShopBackend\Shop.Common\obj\Debug\net8.0\ref\Shop.Common.dll
+D:\Projects\Shop\ShopBackend\Shop.Common\obj\Debug\net8.0\Shop.Common.csproj.AssemblyReference.cache

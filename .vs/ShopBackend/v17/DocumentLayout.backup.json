@@ -1,0 +1,682 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\Projects\\Shop\\ShopBackend\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Projects\\Shop\\ShopBackend\\Shop.Infrastructure\\Migrations\\20251218184141_dbmodifications.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Shop.Infrastructure\\Migrations\\20251218184141_dbmodifications.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C6F9C6EE-5204-4B26-ADA9-92687BB60554}|Shop.Infrastructure\\Shop.Infrastructure.csproj|d:\\projects\\shop\\shopbackend\\shop.infrastructure\\services\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C6F9C6EE-5204-4B26-ADA9-92687BB60554}|Shop.Infrastructure\\Shop.Infrastructure.csproj|solutionrelative:shop.infrastructure\\services\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C6F9C6EE-5204-4B26-ADA9-92687BB60554}|Shop.Infrastructure\\Shop.Infrastructure.csproj|d:\\projects\\shop\\shopbackend\\shop.infrastructure\\services\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C6F9C6EE-5204-4B26-ADA9-92687BB60554}|Shop.Infrastructure\\Shop.Infrastructure.csproj|solutionrelative:shop.infrastructure\\services\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C6F9C6EE-5204-4B26-ADA9-92687BB60554}|Shop.Infrastructure\\Shop.Infrastructure.csproj|d:\\projects\\shop\\shopbackend\\shop.infrastructure\\repositories\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C6F9C6EE-5204-4B26-ADA9-92687BB60554}|Shop.Infrastructure\\Shop.Infrastructure.csproj|solutionrelative:shop.infrastructure\\repositories\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3C9CFC01-FF79-4167-A454-791552F0EE42}|Shop.Entities\\Shop.Entities.csproj|d:\\projects\\shop\\shopbackend\\shop.entities\\client.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3C9CFC01-FF79-4167-A454-791552F0EE42}|Shop.Entities\\Shop.Entities.csproj|solutionrelative:shop.entities\\client.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3C9CFC01-FF79-4167-A454-791552F0EE42}|Shop.Entities\\Shop.Entities.csproj|d:\\projects\\shop\\shopbackend\\shop.entities\\transaction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3C9CFC01-FF79-4167-A454-791552F0EE42}|Shop.Entities\\Shop.Entities.csproj|solutionrelative:shop.entities\\transaction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3C9CFC01-FF79-4167-A454-791552F0EE42}|Shop.Entities\\Shop.Entities.csproj|d:\\projects\\shop\\shopbackend\\shop.entities\\storeitems.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3C9CFC01-FF79-4167-A454-791552F0EE42}|Shop.Entities\\Shop.Entities.csproj|solutionrelative:shop.entities\\storeitems.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3C9CFC01-FF79-4167-A454-791552F0EE42}|Shop.Entities\\Shop.Entities.csproj|d:\\projects\\shop\\shopbackend\\shop.entities\\measurments.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3C9CFC01-FF79-4167-A454-791552F0EE42}|Shop.Entities\\Shop.Entities.csproj|solutionrelative:shop.entities\\measurments.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C7501F69-066F-42E1-B5D5-CB0D8E417507}|Shop.Common\\Shop.Common.csproj|d:\\projects\\shop\\shopbackend\\shop.common\\enums\\paymentmethod.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C7501F69-066F-42E1-B5D5-CB0D8E417507}|Shop.Common\\Shop.Common.csproj|solutionrelative:shop.common\\enums\\paymentmethod.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C7501F69-066F-42E1-B5D5-CB0D8E417507}|Shop.Common\\Shop.Common.csproj|d:\\projects\\shop\\shopbackend\\shop.common\\enums\\gender.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C7501F69-066F-42E1-B5D5-CB0D8E417507}|Shop.Common\\Shop.Common.csproj|solutionrelative:shop.common\\enums\\gender.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3C9CFC01-FF79-4167-A454-791552F0EE42}|Shop.Entities\\Shop.Entities.csproj|d:\\projects\\shop\\shopbackend\\shop.entities\\sale.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3C9CFC01-FF79-4167-A454-791552F0EE42}|Shop.Entities\\Shop.Entities.csproj|solutionrelative:shop.entities\\sale.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3C9CFC01-FF79-4167-A454-791552F0EE42}|Shop.Entities\\Shop.Entities.csproj|d:\\projects\\shop\\shopbackend\\shop.entities\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3C9CFC01-FF79-4167-A454-791552F0EE42}|Shop.Entities\\Shop.Entities.csproj|solutionrelative:shop.entities\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3C9CFC01-FF79-4167-A454-791552F0EE42}|Shop.Entities\\Shop.Entities.csproj|d:\\projects\\shop\\shopbackend\\shop.entities\\base.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3C9CFC01-FF79-4167-A454-791552F0EE42}|Shop.Entities\\Shop.Entities.csproj|solutionrelative:shop.entities\\base.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C6F9C6EE-5204-4B26-ADA9-92687BB60554}|Shop.Infrastructure\\Shop.Infrastructure.csproj|d:\\projects\\shop\\shopbackend\\shop.infrastructure\\migrations\\20251217192543_addedmoretables.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C6F9C6EE-5204-4B26-ADA9-92687BB60554}|Shop.Infrastructure\\Shop.Infrastructure.csproj|solutionrelative:shop.infrastructure\\migrations\\20251217192543_addedmoretables.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3C9CFC01-FF79-4167-A454-791552F0EE42}|Shop.Entities\\Shop.Entities.csproj|d:\\projects\\shop\\shopbackend\\shop.entities\\khata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3C9CFC01-FF79-4167-A454-791552F0EE42}|Shop.Entities\\Shop.Entities.csproj|solutionrelative:shop.entities\\khata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3C9CFC01-FF79-4167-A454-791552F0EE42}|Shop.Entities\\Shop.Entities.csproj|d:\\projects\\shop\\shopbackend\\shop.entities\\expenses.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3C9CFC01-FF79-4167-A454-791552F0EE42}|Shop.Entities\\Shop.Entities.csproj|solutionrelative:shop.entities\\expenses.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3C9CFC01-FF79-4167-A454-791552F0EE42}|Shop.Entities\\Shop.Entities.csproj|d:\\projects\\shop\\shopbackend\\shop.entities\\otpcode.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3C9CFC01-FF79-4167-A454-791552F0EE42}|Shop.Entities\\Shop.Entities.csproj|solutionrelative:shop.entities\\otpcode.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B4E3F637-59D0-4F60-8A5E-02C1E434F991}|ShopBackend\\ShopBackend.csproj|d:\\projects\\shop\\shopbackend\\shopbackend\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B4E3F637-59D0-4F60-8A5E-02C1E434F991}|ShopBackend\\ShopBackend.csproj|solutionrelative:shopbackend\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B4E3F637-59D0-4F60-8A5E-02C1E434F991}|ShopBackend\\ShopBackend.csproj|d:\\projects\\shop\\shopbackend\\shopbackend\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B4E3F637-59D0-4F60-8A5E-02C1E434F991}|ShopBackend\\ShopBackend.csproj|solutionrelative:shopbackend\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C6F9C6EE-5204-4B26-ADA9-92687BB60554}|Shop.Infrastructure\\Shop.Infrastructure.csproj|d:\\projects\\shop\\shopbackend\\shop.infrastructure\\services\\tokenservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C6F9C6EE-5204-4B26-ADA9-92687BB60554}|Shop.Infrastructure\\Shop.Infrastructure.csproj|solutionrelative:shop.infrastructure\\services\\tokenservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B4E3F637-59D0-4F60-8A5E-02C1E434F991}|ShopBackend\\ShopBackend.csproj|d:\\projects\\shop\\shopbackend\\shopbackend\\middleware\\exceptionhandlingmiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B4E3F637-59D0-4F60-8A5E-02C1E434F991}|ShopBackend\\ShopBackend.csproj|solutionrelative:shopbackend\\middleware\\exceptionhandlingmiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{13A01FA2-8411-412E-8825-0130D46B5054}|Shop.Core\\Shop.Core.csproj|d:\\projects\\shop\\shopbackend\\shop.core\\dtos\\refreshtokenrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{13A01FA2-8411-412E-8825-0130D46B5054}|Shop.Core\\Shop.Core.csproj|solutionrelative:shop.core\\dtos\\refreshtokenrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C6F9C6EE-5204-4B26-ADA9-92687BB60554}|Shop.Infrastructure\\Shop.Infrastructure.csproj|d:\\projects\\shop\\shopbackend\\shop.infrastructure\\services\\smsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C6F9C6EE-5204-4B26-ADA9-92687BB60554}|Shop.Infrastructure\\Shop.Infrastructure.csproj|solutionrelative:shop.infrastructure\\services\\smsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B4E3F637-59D0-4F60-8A5E-02C1E434F991}|ShopBackend\\ShopBackend.csproj|d:\\projects\\shop\\shopbackend\\shopbackend\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B4E3F637-59D0-4F60-8A5E-02C1E434F991}|ShopBackend\\ShopBackend.csproj|solutionrelative:shopbackend\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C7501F69-066F-42E1-B5D5-CB0D8E417507}|Shop.Common\\Shop.Common.csproj|d:\\projects\\shop\\shopbackend\\shop.common\\phonenumbervalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C7501F69-066F-42E1-B5D5-CB0D8E417507}|Shop.Common\\Shop.Common.csproj|solutionrelative:shop.common\\phonenumbervalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{13A01FA2-8411-412E-8825-0130D46B5054}|Shop.Core\\Shop.Core.csproj|d:\\projects\\shop\\shopbackend\\shop.core\\interfaces\\services\\iuserservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{13A01FA2-8411-412E-8825-0130D46B5054}|Shop.Core\\Shop.Core.csproj|solutionrelative:shop.core\\interfaces\\services\\iuserservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{13A01FA2-8411-412E-8825-0130D46B5054}|Shop.Core\\Shop.Core.csproj|d:\\projects\\shop\\shopbackend\\shop.core\\dtos\\securitystatusresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{13A01FA2-8411-412E-8825-0130D46B5054}|Shop.Core\\Shop.Core.csproj|solutionrelative:shop.core\\dtos\\securitystatusresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B4E3F637-59D0-4F60-8A5E-02C1E434F991}|ShopBackend\\ShopBackend.csproj|d:\\projects\\shop\\shopbackend\\shopbackend\\middleware\\requestloggingmiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B4E3F637-59D0-4F60-8A5E-02C1E434F991}|ShopBackend\\ShopBackend.csproj|solutionrelative:shopbackend\\middleware\\requestloggingmiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{13A01FA2-8411-412E-8825-0130D46B5054}|Shop.Core\\Shop.Core.csproj|d:\\projects\\shop\\shopbackend\\shop.core\\dtos\\userprofileresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{13A01FA2-8411-412E-8825-0130D46B5054}|Shop.Core\\Shop.Core.csproj|solutionrelative:shop.core\\dtos\\userprofileresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{13A01FA2-8411-412E-8825-0130D46B5054}|Shop.Core\\Shop.Core.csproj|d:\\projects\\shop\\shopbackend\\shop.core\\dtos\\resetotprequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{13A01FA2-8411-412E-8825-0130D46B5054}|Shop.Core\\Shop.Core.csproj|solutionrelative:shop.core\\dtos\\resetotprequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{13A01FA2-8411-412E-8825-0130D46B5054}|Shop.Core\\Shop.Core.csproj|d:\\projects\\shop\\shopbackend\\shop.core\\dtos\\changepinrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{13A01FA2-8411-412E-8825-0130D46B5054}|Shop.Core\\Shop.Core.csproj|solutionrelative:shop.core\\dtos\\changepinrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{13A01FA2-8411-412E-8825-0130D46B5054}|Shop.Core\\Shop.Core.csproj|d:\\projects\\shop\\shopbackend\\shop.core\\interfaces\\repositories\\iuserrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{13A01FA2-8411-412E-8825-0130D46B5054}|Shop.Core\\Shop.Core.csproj|solutionrelative:shop.core\\interfaces\\repositories\\iuserrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{13A01FA2-8411-412E-8825-0130D46B5054}|Shop.Core\\Shop.Core.csproj|d:\\projects\\shop\\shopbackend\\shop.core\\dtos\\responses.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{13A01FA2-8411-412E-8825-0130D46B5054}|Shop.Core\\Shop.Core.csproj|solutionrelative:shop.core\\dtos\\responses.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C6F9C6EE-5204-4B26-ADA9-92687BB60554}|Shop.Infrastructure\\Shop.Infrastructure.csproj|d:\\projects\\shop\\shopbackend\\shop.infrastructure\\repositories\\refreshtokenrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C6F9C6EE-5204-4B26-ADA9-92687BB60554}|Shop.Infrastructure\\Shop.Infrastructure.csproj|solutionrelative:shop.infrastructure\\repositories\\refreshtokenrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{13A01FA2-8411-412E-8825-0130D46B5054}|Shop.Core\\Shop.Core.csproj|d:\\projects\\shop\\shopbackend\\shop.core\\interfaces\\repositories\\iauditlogrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{13A01FA2-8411-412E-8825-0130D46B5054}|Shop.Core\\Shop.Core.csproj|solutionrelative:shop.core\\interfaces\\repositories\\iauditlogrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{13A01FA2-8411-412E-8825-0130D46B5054}|Shop.Core\\Shop.Core.csproj|d:\\projects\\shop\\shopbackend\\shop.core\\interfaces\\repositories\\irefreshrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{13A01FA2-8411-412E-8825-0130D46B5054}|Shop.Core\\Shop.Core.csproj|solutionrelative:shop.core\\interfaces\\repositories\\irefreshrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{13A01FA2-8411-412E-8825-0130D46B5054}|Shop.Core\\Shop.Core.csproj|d:\\projects\\shop\\shopbackend\\shop.core\\interfaces\\repositories\\iotprepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{13A01FA2-8411-412E-8825-0130D46B5054}|Shop.Core\\Shop.Core.csproj|solutionrelative:shop.core\\interfaces\\repositories\\iotprepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{13A01FA2-8411-412E-8825-0130D46B5054}|Shop.Core\\Shop.Core.csproj|d:\\projects\\shop\\shopbackend\\shop.core\\interfaces\\irepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{13A01FA2-8411-412E-8825-0130D46B5054}|Shop.Core\\Shop.Core.csproj|solutionrelative:shop.core\\interfaces\\irepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{13A01FA2-8411-412E-8825-0130D46B5054}|Shop.Core\\Shop.Core.csproj|d:\\projects\\shop\\shopbackend\\shop.core\\enums\\responsestatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{13A01FA2-8411-412E-8825-0130D46B5054}|Shop.Core\\Shop.Core.csproj|solutionrelative:shop.core\\enums\\responsestatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3C9CFC01-FF79-4167-A454-791552F0EE42}|Shop.Entities\\Shop.Entities.csproj|d:\\projects\\shop\\shopbackend\\shop.entities\\refreshtoken.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3C9CFC01-FF79-4167-A454-791552F0EE42}|Shop.Entities\\Shop.Entities.csproj|solutionrelative:shop.entities\\refreshtoken.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "20251218184141_dbmodifications.cs",
+              "DocumentMoniker": "D:\\Projects\\Shop\\ShopBackend\\Shop.Infrastructure\\Migrations\\20251218184141_dbmodifications.cs",
+              "RelativeDocumentMoniker": "Shop.Infrastructure\\Migrations\\20251218184141_dbmodifications.cs",
+              "ToolTip": "D:\\Projects\\Shop\\ShopBackend\\Shop.Infrastructure\\Migrations\\20251218184141_dbmodifications.cs",
+              "RelativeToolTip": "Shop.Infrastructure\\Migrations\\20251218184141_dbmodifications.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-18T18:41:41.785Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "UserRepository.cs",
+              "DocumentMoniker": "D:\\Projects\\Shop\\ShopBackend\\Shop.Infrastructure\\Repositories\\UserRepository.cs",
+              "RelativeDocumentMoniker": "Shop.Infrastructure\\Repositories\\UserRepository.cs",
+              "ToolTip": "D:\\Projects\\Shop\\ShopBackend\\Shop.Infrastructure\\Repositories\\UserRepository.cs",
+              "RelativeToolTip": "Shop.Infrastructure\\Repositories\\UserRepository.cs",
+              "ViewState": "AgIAAB0AAAAAAAAAAAAhwCoAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-18T18:39:21.385Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Client.cs",
+              "DocumentMoniker": "D:\\Projects\\Shop\\ShopBackend\\Shop.Entities\\Client.cs",
+              "RelativeDocumentMoniker": "Shop.Entities\\Client.cs",
+              "ToolTip": "D:\\Projects\\Shop\\ShopBackend\\Shop.Entities\\Client.cs",
+              "RelativeToolTip": "Shop.Entities\\Client.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-16T18:51:48.782Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "AuthService.cs",
+              "DocumentMoniker": "D:\\Projects\\Shop\\ShopBackend\\Shop.Infrastructure\\Services\\AuthService.cs",
+              "RelativeDocumentMoniker": "Shop.Infrastructure\\Services\\AuthService.cs",
+              "ToolTip": "D:\\Projects\\Shop\\ShopBackend\\Shop.Infrastructure\\Services\\AuthService.cs",
+              "RelativeToolTip": "Shop.Infrastructure\\Services\\AuthService.cs",
+              "ViewState": "AgIAAI8AAAAAAAAAAAAhwJoAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-30T17:29:54.858Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "UserService.cs",
+              "DocumentMoniker": "D:\\Projects\\Shop\\ShopBackend\\Shop.Infrastructure\\Services\\UserService.cs",
+              "RelativeDocumentMoniker": "Shop.Infrastructure\\Services\\UserService.cs",
+              "ToolTip": "D:\\Projects\\Shop\\ShopBackend\\Shop.Infrastructure\\Services\\UserService.cs",
+              "RelativeToolTip": "Shop.Infrastructure\\Services\\UserService.cs",
+              "ViewState": "AgIAAM0AAABAZmZmZmYUwMQAAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-20T19:52:33.213Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{0ad07096-bba9-4900-a651-0598d26f6d24}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Transaction.cs",
+              "DocumentMoniker": "D:\\Projects\\Shop\\ShopBackend\\Shop.Entities\\Transaction.cs",
+              "RelativeDocumentMoniker": "Shop.Entities\\Transaction.cs",
+              "ToolTip": "D:\\Projects\\Shop\\ShopBackend\\Shop.Entities\\Transaction.cs",
+              "RelativeToolTip": "Shop.Entities\\Transaction.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-15T18:29:39.074Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "StoreItems.cs",
+              "DocumentMoniker": "D:\\Projects\\Shop\\ShopBackend\\Shop.Entities\\StoreItems.cs",
+              "RelativeDocumentMoniker": "Shop.Entities\\StoreItems.cs",
+              "ToolTip": "D:\\Projects\\Shop\\ShopBackend\\Shop.Entities\\StoreItems.cs",
+              "RelativeToolTip": "Shop.Entities\\StoreItems.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-15T18:27:08.299Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Measurments.cs",
+              "DocumentMoniker": "D:\\Projects\\Shop\\ShopBackend\\Shop.Entities\\Measurments.cs",
+              "RelativeDocumentMoniker": "Shop.Entities\\Measurments.cs",
+              "ToolTip": "D:\\Projects\\Shop\\ShopBackend\\Shop.Entities\\Measurments.cs",
+              "RelativeToolTip": "Shop.Entities\\Measurments.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAAwBAAAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-16T18:29:57.288Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "PaymentMethod.cs",
+              "DocumentMoniker": "D:\\Projects\\Shop\\ShopBackend\\Shop.Common\\enums\\PaymentMethod.cs",
+              "RelativeDocumentMoniker": "Shop.Common\\enums\\PaymentMethod.cs",
+              "ToolTip": "D:\\Projects\\Shop\\ShopBackend\\Shop.Common\\enums\\PaymentMethod.cs",
+              "RelativeToolTip": "Shop.Common\\enums\\PaymentMethod.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-18T18:35:06.864Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Gender.cs",
+              "DocumentMoniker": "D:\\Projects\\Shop\\ShopBackend\\Shop.Common\\enums\\Gender.cs",
+              "RelativeDocumentMoniker": "Shop.Common\\enums\\Gender.cs",
+              "ToolTip": "D:\\Projects\\Shop\\ShopBackend\\Shop.Common\\enums\\Gender.cs",
+              "RelativeToolTip": "Shop.Common\\enums\\Gender.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-18T18:33:40.093Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "User.cs",
+              "DocumentMoniker": "D:\\Projects\\Shop\\ShopBackend\\Shop.Entities\\User.cs",
+              "RelativeDocumentMoniker": "Shop.Entities\\User.cs",
+              "ToolTip": "D:\\Projects\\Shop\\ShopBackend\\Shop.Entities\\User.cs",
+              "RelativeToolTip": "Shop.Entities\\User.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-20T19:02:07.117Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "Base.cs",
+              "DocumentMoniker": "D:\\Projects\\Shop\\ShopBackend\\Shop.Entities\\Base.cs",
+              "RelativeDocumentMoniker": "Shop.Entities\\Base.cs",
+              "ToolTip": "D:\\Projects\\Shop\\ShopBackend\\Shop.Entities\\Base.cs",
+              "RelativeToolTip": "Shop.Entities\\Base.cs",
+              "ViewState": "AgIAAAcAAADQzMzMzMw2wAkAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-18T18:19:02.402Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Sale.cs",
+              "DocumentMoniker": "D:\\Projects\\Shop\\ShopBackend\\Shop.Entities\\Sale.cs",
+              "RelativeDocumentMoniker": "Shop.Entities\\Sale.cs",
+              "ToolTip": "D:\\Projects\\Shop\\ShopBackend\\Shop.Entities\\Sale.cs",
+              "RelativeToolTip": "Shop.Entities\\Sale.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-15T18:25:26.234Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "20251217192543_addedMoreTables.cs",
+              "DocumentMoniker": "D:\\Projects\\Shop\\ShopBackend\\Shop.Infrastructure\\Migrations\\20251217192543_addedMoreTables.cs",
+              "RelativeDocumentMoniker": "Shop.Infrastructure\\Migrations\\20251217192543_addedMoreTables.cs",
+              "ToolTip": "D:\\Projects\\Shop\\ShopBackend\\Shop.Infrastructure\\Migrations\\20251217192543_addedMoreTables.cs",
+              "RelativeToolTip": "Shop.Infrastructure\\Migrations\\20251217192543_addedMoreTables.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-17T19:25:43.803Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "Khata.cs",
+              "DocumentMoniker": "D:\\Projects\\Shop\\ShopBackend\\Shop.Entities\\Khata.cs",
+              "RelativeDocumentMoniker": "Shop.Entities\\Khata.cs",
+              "ToolTip": "D:\\Projects\\Shop\\ShopBackend\\Shop.Entities\\Khata.cs",
+              "RelativeToolTip": "Shop.Entities\\Khata.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAA2AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-15T18:19:58.711Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "Expenses.cs",
+              "DocumentMoniker": "D:\\Projects\\Shop\\ShopBackend\\Shop.Entities\\Expenses.cs",
+              "RelativeDocumentMoniker": "Shop.Entities\\Expenses.cs",
+              "ToolTip": "D:\\Projects\\Shop\\ShopBackend\\Shop.Entities\\Expenses.cs",
+              "RelativeToolTip": "Shop.Entities\\Expenses.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-15T18:22:55.502Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "TokenService.cs",
+              "DocumentMoniker": "D:\\Projects\\Shop\\ShopBackend\\Shop.Infrastructure\\Services\\TokenService.cs",
+              "RelativeDocumentMoniker": "Shop.Infrastructure\\Services\\TokenService.cs",
+              "ToolTip": "D:\\Projects\\Shop\\ShopBackend\\Shop.Infrastructure\\Services\\TokenService.cs",
+              "RelativeToolTip": "Shop.Infrastructure\\Services\\TokenService.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAABRwBMAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-28T17:40:21.784Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "AuthController.cs",
+              "DocumentMoniker": "D:\\Projects\\Shop\\ShopBackend\\ShopBackend\\Controllers\\AuthController.cs",
+              "RelativeDocumentMoniker": "ShopBackend\\Controllers\\AuthController.cs",
+              "ToolTip": "D:\\Projects\\Shop\\ShopBackend\\ShopBackend\\Controllers\\AuthController.cs",
+              "RelativeToolTip": "ShopBackend\\Controllers\\AuthController.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAIBJwB0AAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-28T17:35:02.35Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "UserController.cs",
+              "DocumentMoniker": "D:\\Projects\\Shop\\ShopBackend\\ShopBackend\\Controllers\\UserController.cs",
+              "RelativeDocumentMoniker": "ShopBackend\\Controllers\\UserController.cs",
+              "ToolTip": "D:\\Projects\\Shop\\ShopBackend\\ShopBackend\\Controllers\\UserController.cs",
+              "RelativeToolTip": "ShopBackend\\Controllers\\UserController.cs",
+              "ViewState": "AgIAACwAAAAAAAAAAAAiwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-28T17:19:36.038Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "ExceptionHandlingMiddleware.cs",
+              "DocumentMoniker": "D:\\Projects\\Shop\\ShopBackend\\ShopBackend\\Middleware\\ExceptionHandlingMiddleware.cs",
+              "RelativeDocumentMoniker": "ShopBackend\\Middleware\\ExceptionHandlingMiddleware.cs",
+              "ToolTip": "D:\\Projects\\Shop\\ShopBackend\\ShopBackend\\Middleware\\ExceptionHandlingMiddleware.cs",
+              "RelativeToolTip": "ShopBackend\\Middleware\\ExceptionHandlingMiddleware.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-22T18:07:02.893Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "PhoneNumberValidator.cs",
+              "DocumentMoniker": "D:\\Projects\\Shop\\ShopBackend\\Shop.Common\\PhoneNumberValidator.cs",
+              "RelativeDocumentMoniker": "Shop.Common\\PhoneNumberValidator.cs",
+              "ToolTip": "D:\\Projects\\Shop\\ShopBackend\\Shop.Common\\PhoneNumberValidator.cs",
+              "RelativeToolTip": "Shop.Common\\PhoneNumberValidator.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-20T19:59:23.938Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "OtpCode.cs",
+              "DocumentMoniker": "D:\\Projects\\Shop\\ShopBackend\\Shop.Entities\\OtpCode.cs",
+              "RelativeDocumentMoniker": "Shop.Entities\\OtpCode.cs",
+              "ToolTip": "D:\\Projects\\Shop\\ShopBackend\\Shop.Entities\\OtpCode.cs",
+              "RelativeToolTip": "Shop.Entities\\OtpCode.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-20T18:59:30.789Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "SmsService.cs",
+              "DocumentMoniker": "D:\\Projects\\Shop\\ShopBackend\\Shop.Infrastructure\\Services\\SmsService.cs",
+              "RelativeDocumentMoniker": "Shop.Infrastructure\\Services\\SmsService.cs",
+              "ToolTip": "D:\\Projects\\Shop\\ShopBackend\\Shop.Infrastructure\\Services\\SmsService.cs",
+              "RelativeToolTip": "Shop.Infrastructure\\Services\\SmsService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-28T17:56:02.842Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "RefreshTokenRequest.cs",
+              "DocumentMoniker": "D:\\Projects\\Shop\\ShopBackend\\Shop.Core\\DTOs\\RefreshTokenRequest.cs",
+              "RelativeDocumentMoniker": "Shop.Core\\DTOs\\RefreshTokenRequest.cs",
+              "ToolTip": "D:\\Projects\\Shop\\ShopBackend\\Shop.Core\\DTOs\\RefreshTokenRequest.cs",
+              "RelativeToolTip": "Shop.Core\\DTOs\\RefreshTokenRequest.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-28T18:38:27.201Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\Projects\\Shop\\ShopBackend\\ShopBackend\\Program.cs",
+              "RelativeDocumentMoniker": "ShopBackend\\Program.cs",
+              "ToolTip": "D:\\Projects\\Shop\\ShopBackend\\ShopBackend\\Program.cs",
+              "RelativeToolTip": "ShopBackend\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-30T18:13:08.532Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "IUserService.cs",
+              "DocumentMoniker": "D:\\Projects\\Shop\\ShopBackend\\Shop.Core\\Interfaces\\Services\\IUserService.cs",
+              "RelativeDocumentMoniker": "Shop.Core\\Interfaces\\Services\\IUserService.cs",
+              "ToolTip": "D:\\Projects\\Shop\\ShopBackend\\Shop.Core\\Interfaces\\Services\\IUserService.cs",
+              "RelativeToolTip": "Shop.Core\\Interfaces\\Services\\IUserService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-20T19:28:17.222Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "SecurityStatusResponse.cs",
+              "DocumentMoniker": "D:\\Projects\\Shop\\ShopBackend\\Shop.Core\\DTOs\\SecurityStatusResponse.cs",
+              "RelativeDocumentMoniker": "Shop.Core\\DTOs\\SecurityStatusResponse.cs",
+              "ToolTip": "D:\\Projects\\Shop\\ShopBackend\\Shop.Core\\DTOs\\SecurityStatusResponse.cs",
+              "RelativeToolTip": "Shop.Core\\DTOs\\SecurityStatusResponse.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-20T19:23:12.738Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "RequestLoggingMiddleware.cs",
+              "DocumentMoniker": "D:\\Projects\\Shop\\ShopBackend\\ShopBackend\\Middleware\\RequestLoggingMiddleware.cs",
+              "RelativeDocumentMoniker": "ShopBackend\\Middleware\\RequestLoggingMiddleware.cs",
+              "ToolTip": "D:\\Projects\\Shop\\ShopBackend\\ShopBackend\\Middleware\\RequestLoggingMiddleware.cs",
+              "RelativeToolTip": "ShopBackend\\Middleware\\RequestLoggingMiddleware.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACQAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-22T18:08:24.454Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "UserProfileResponse.cs",
+              "DocumentMoniker": "D:\\Projects\\Shop\\ShopBackend\\Shop.Core\\DTOs\\UserProfileResponse.cs",
+              "RelativeDocumentMoniker": "Shop.Core\\DTOs\\UserProfileResponse.cs",
+              "ToolTip": "D:\\Projects\\Shop\\ShopBackend\\Shop.Core\\DTOs\\UserProfileResponse.cs",
+              "RelativeToolTip": "Shop.Core\\DTOs\\UserProfileResponse.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-20T19:22:29.799Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "ResetOtpRequest.cs",
+              "DocumentMoniker": "D:\\Projects\\Shop\\ShopBackend\\Shop.Core\\DTOs\\ResetOtpRequest.cs",
+              "RelativeDocumentMoniker": "Shop.Core\\DTOs\\ResetOtpRequest.cs",
+              "ToolTip": "D:\\Projects\\Shop\\ShopBackend\\Shop.Core\\DTOs\\ResetOtpRequest.cs",
+              "RelativeToolTip": "Shop.Core\\DTOs\\ResetOtpRequest.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-20T19:20:13.351Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "ChangePinRequest.cs",
+              "DocumentMoniker": "D:\\Projects\\Shop\\ShopBackend\\Shop.Core\\DTOs\\ChangePinRequest.cs",
+              "RelativeDocumentMoniker": "Shop.Core\\DTOs\\ChangePinRequest.cs",
+              "ToolTip": "D:\\Projects\\Shop\\ShopBackend\\Shop.Core\\DTOs\\ChangePinRequest.cs",
+              "RelativeToolTip": "Shop.Core\\DTOs\\ChangePinRequest.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-20T19:18:17.549Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "IUserRepository.cs",
+              "DocumentMoniker": "D:\\Projects\\Shop\\ShopBackend\\Shop.Core\\Interfaces\\Repositories\\IUserRepository.cs",
+              "RelativeDocumentMoniker": "Shop.Core\\Interfaces\\Repositories\\IUserRepository.cs",
+              "ToolTip": "D:\\Projects\\Shop\\ShopBackend\\Shop.Core\\Interfaces\\Repositories\\IUserRepository.cs",
+              "RelativeToolTip": "Shop.Core\\Interfaces\\Repositories\\IUserRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-20T18:54:20.884Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 32,
+              "Title": "Responses.cs",
+              "DocumentMoniker": "D:\\Projects\\Shop\\ShopBackend\\Shop.Core\\DTOs\\Responses.cs",
+              "RelativeDocumentMoniker": "Shop.Core\\DTOs\\Responses.cs",
+              "ToolTip": "D:\\Projects\\Shop\\ShopBackend\\Shop.Core\\DTOs\\Responses.cs",
+              "RelativeToolTip": "Shop.Core\\DTOs\\Responses.cs",
+              "ViewState": "AgIAABYAAAAAAAAAACBjwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-05T10:59:46.152Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 33,
+              "Title": "RefreshTokenRepository.cs",
+              "DocumentMoniker": "D:\\Projects\\Shop\\ShopBackend\\Shop.Infrastructure\\Repositories\\RefreshTokenRepository.cs",
+              "RelativeDocumentMoniker": "Shop.Infrastructure\\Repositories\\RefreshTokenRepository.cs",
+              "ToolTip": "D:\\Projects\\Shop\\ShopBackend\\Shop.Infrastructure\\Repositories\\RefreshTokenRepository.cs",
+              "RelativeToolTip": "Shop.Infrastructure\\Repositories\\RefreshTokenRepository.cs",
+              "ViewState": "AgIAACEAAAAAAAAAAAAqwAkAAAA6AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-11T12:30:34.671Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 34,
+              "Title": "IAuditLogRepository.cs",
+              "DocumentMoniker": "D:\\Projects\\Shop\\ShopBackend\\Shop.Core\\Interfaces\\Repositories\\IAuditLogRepository.cs",
+              "RelativeDocumentMoniker": "Shop.Core\\Interfaces\\Repositories\\IAuditLogRepository.cs",
+              "ToolTip": "D:\\Projects\\Shop\\ShopBackend\\Shop.Core\\Interfaces\\Repositories\\IAuditLogRepository.cs",
+              "RelativeToolTip": "Shop.Core\\Interfaces\\Repositories\\IAuditLogRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-11T10:31:16.453Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 35,
+              "Title": "IRefreshRepository.cs",
+              "DocumentMoniker": "D:\\Projects\\Shop\\ShopBackend\\Shop.Core\\Interfaces\\Repositories\\IRefreshRepository.cs",
+              "RelativeDocumentMoniker": "Shop.Core\\Interfaces\\Repositories\\IRefreshRepository.cs",
+              "ToolTip": "D:\\Projects\\Shop\\ShopBackend\\Shop.Core\\Interfaces\\Repositories\\IRefreshRepository.cs",
+              "RelativeToolTip": "Shop.Core\\Interfaces\\Repositories\\IRefreshRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-11T10:17:38.978Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 36,
+              "Title": "IOtpRepository.cs",
+              "DocumentMoniker": "D:\\Projects\\Shop\\ShopBackend\\Shop.Core\\Interfaces\\Repositories\\IOtpRepository.cs",
+              "RelativeDocumentMoniker": "Shop.Core\\Interfaces\\Repositories\\IOtpRepository.cs",
+              "ToolTip": "D:\\Projects\\Shop\\ShopBackend\\Shop.Core\\Interfaces\\Repositories\\IOtpRepository.cs",
+              "RelativeToolTip": "Shop.Core\\Interfaces\\Repositories\\IOtpRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAA5AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-11T10:14:32.319Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 37,
+              "Title": "IRepository.cs",
+              "DocumentMoniker": "D:\\Projects\\Shop\\ShopBackend\\Shop.Core\\Interfaces\\IRepository.cs",
+              "RelativeDocumentMoniker": "Shop.Core\\Interfaces\\IRepository.cs",
+              "ToolTip": "D:\\Projects\\Shop\\ShopBackend\\Shop.Core\\Interfaces\\IRepository.cs",
+              "RelativeToolTip": "Shop.Core\\Interfaces\\IRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-11T10:11:17.816Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 38,
+              "Title": "ResponseStatus.cs",
+              "DocumentMoniker": "D:\\Projects\\Shop\\ShopBackend\\Shop.Core\\Enums\\ResponseStatus.cs",
+              "RelativeDocumentMoniker": "Shop.Core\\Enums\\ResponseStatus.cs",
+              "ToolTip": "D:\\Projects\\Shop\\ShopBackend\\Shop.Core\\Enums\\ResponseStatus.cs",
+              "RelativeToolTip": "Shop.Core\\Enums\\ResponseStatus.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-05T10:35:46.863Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 39,
+              "Title": "RefreshToken.cs",
+              "DocumentMoniker": "D:\\Projects\\Shop\\ShopBackend\\Shop.Entities\\RefreshToken.cs",
+              "RelativeDocumentMoniker": "Shop.Entities\\RefreshToken.cs",
+              "ToolTip": "D:\\Projects\\Shop\\ShopBackend\\Shop.Entities\\RefreshToken.cs",
+              "RelativeToolTip": "Shop.Entities\\RefreshToken.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAA5AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-05T10:34:31.835Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
