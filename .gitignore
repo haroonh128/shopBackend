@@ -7,9 +7,15 @@ obj/
 *.suo
 *.userosscache
 *.sln.docstates
+*.cache
+*.db
+*.db-shm
+*.db-wal
+*.vsidx
 
 # VS Code
 .vscode/
+.vs/
 
 # Rider
 .idea/
