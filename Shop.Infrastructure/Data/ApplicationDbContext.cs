@@ -54,5 +54,55 @@ namespace Shop.Infrastructure.Data
                 }
             }
         }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            // -----------------------------
+            // PROVIDER-SPECIFIC FIXES
+            // -----------------------------
+
+            if (!Database.IsSqlServer())
+            {
+                // SQLite: store GUIDs as TEXT
+                modelBuilder.Entity<Client>()
+                    .Property(e => e.Id)
+                    .HasConversion<string>();
+
+                modelBuilder.Entity<User>()
+                    .Property(e => e.Id)
+                    .HasConversion<string>();
+
+                // repeat ONLY for entities with Guid PKs
+            }
+
+            if (Database.IsSqlServer())
+            {
+                // SQL Server: native GUIDs
+                modelBuilder.Entity<Client>()
+                    .Property(e => e.Id)
+                    .HasColumnType("uniqueidentifier");
+
+                modelBuilder.Entity<User>()
+                    .Property(e => e.Id)
+                    .HasColumnType("uniqueidentifier");
+            }
+        }
+
+        protected override void ConfigureConventions(ModelConfigurationBuilder builder)
+        {
+            var db = Database.ProviderName;
+
+            builder.Properties<DateTime>()
+                .HaveConversion<DateTime>();
+
+            builder.Properties<string>().HaveMaxLength(255);
+
+            builder.Properties<bool>();
+
+            builder.Properties<decimal>()
+               .HavePrecision(18, 2);
+        }
     }
 }

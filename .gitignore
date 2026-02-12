@@ -23,9 +23,9 @@ obj/
 # Environment files
 .env
 
-# App settings (secrets)
-appsettings.json
-appsettings.*.json
+# # App settings (secrets)
+# appsettings.json
+# appsettings.*.json
 
 # Logs
 *.log

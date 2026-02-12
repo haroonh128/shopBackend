@@ -1,4 +1,4 @@
-// Api/Program.cs
+﻿// Api/Program.cs
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
@@ -58,28 +58,30 @@ builder.Services.AddSwaggerGen(c =>
         }
     });
 
-    // Enable XML comments if you have them
-    // var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-    // var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
-    // c.IncludeXmlComments(xmlPath);
 });
 
+var appMode = builder.Configuration["AppMode"];
 // Database
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
-    options.UseSqlServer(
-        builder.Configuration.GetConnectionString("DefaultConnection"),
-        b =>
-        {
-            b.MigrationsAssembly("Shop.Infrastructure");
-            // Retry on failure is disabled to support manual transactions
-            // If retry is needed, implement it at the application/service level
-            // b.EnableRetryOnFailure(
-            //     maxRetryCount: 3,
-            //     maxRetryDelay: TimeSpan.FromSeconds(30),
-            //     errorNumbersToAdd: null);
-        });
+    if (appMode == "Desktop")
+    {
+        var dbPath = Path.Combine(
+            Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData),
+            "ShopPOS", "pos.db");
+        Directory.CreateDirectory(Path.GetDirectoryName(dbPath)!);
 
+        options.UseSqlite($"Data Source={dbPath}", b => b.MigrationsAssembly("Shop.Infrastructure"));
+    }
+    else
+    {
+        options.UseSqlServer(
+            builder.Configuration.GetConnectionString("DefaultConnection"),
+            b =>
+            {
+                b.MigrationsAssembly("Shop.Infrastructure");
+            });
+    }
     if (builder.Environment.IsDevelopment())
     {
         options.EnableSensitiveDataLogging();
@@ -94,7 +96,8 @@ builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<ITokenService, TokenService>();
-builder.Services.AddScoped<ISmsService, SmsService>();
+    builder.Services.AddScoped<ISmsService, SmsService>();
+
 builder.Services.AddScoped<IAuditService, AuditService>();
 
 // JWT Authentication
@@ -175,11 +178,6 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
-    //    c =>
-    //{
-    //    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Authentication API V1");
-    //    c.RoutePrefix = string.Empty; // Set Swagger UI at app's root
-    //});
 }
 else
 {
@@ -194,8 +192,10 @@ else
 app.UseMiddleware<ExceptionHandlingMiddleware>();
 app.UseMiddleware<RequestLoggingMiddleware>();
 
-app.UseHttpsRedirection();
-
+if (appMode != "Desktop")
+{
+    app.UseHttpsRedirection();
+}
 app.UseResponseCompression();
 
 app.UseCors(app.Environment.IsDevelopment() ? "AllowAll" : "Production");
