@@ -1,6 +1,6 @@
 ﻿namespace Shop.Infrastructure.Repositories
 {
-    internal interface IKhataRepository
+    public interface IKhataRepository
     {
     }
 }

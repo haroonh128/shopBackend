@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Shop.Entities;
 
 namespace Shop.Infrastructure.Data
@@ -26,7 +26,9 @@ namespace Shop.Infrastructure.Data
         public DbSet<PackageModule> PackageModules { get; set; }
         public DbSet<LicenseSubscription> LicenseSubscriptions { get; set; }
         public DbSet<License> Licenses { get; set; }
-
+        public DbSet<Product> Products { get; set; }
+        public DbSet<Address> Addresses { get; set; }
+        public DbSet<StoreItem> ShopInventory { get; set; }
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {

@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
+using Shop.Core.Interfaces.Services;
 using Twilio;
 using Twilio.Rest.Api.V2010.Account;
 using Twilio.Types;

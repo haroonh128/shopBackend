@@ -1,5 +1,4 @@
-﻿
-namespace Shop.Infrastructure.Services
+﻿namespace Shop.Core.Interfaces.Services
 {
     public interface ISmsService
     {

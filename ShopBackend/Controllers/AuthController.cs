@@ -6,8 +6,6 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace ShopBackend.Controllers
 {
-
-
     [ApiController]
     [Route("api/[controller]")]
     public class AuthController : ControllerBase

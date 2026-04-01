@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore.Storage;
+using Microsoft.EntityFrameworkCore.Storage;
 using Shop.Core.Interfaces.Repositories;
 using Shop.Infrastructure.Data;
 using Shop.Infrastructure.Repositories;
@@ -14,6 +14,14 @@ namespace Shop.Infrastructure.UnitOfWork
         private IOtpRepository? _otpRepository;
         private IRefreshTokenRepository? _refreshTokenRepository;
         private IAuditLogRepository? _auditLogRepository;
+        private ILicenseRepository? _licenseRepository;
+        private ILicenseSubscriptionRepository? _licenseSubscriptionRepository;
+        private IPackageRepository? _packageRepository;
+        private IModuleRepository? _moduleRepository;
+        private IPackageModuleRepository? _packageModuleRepository;
+        private IProductRepository? _productRepository;
+        private IAddressRepository? _addressRepository;
+        private IStoreItemRepository? _storeItemRepository;
 
         public UnitOfWork(ApplicationDbContext context)
         {
@@ -32,6 +40,28 @@ namespace Shop.Infrastructure.UnitOfWork
         public IAuditLogRepository AuditLogs =>
             _auditLogRepository ??= new AuditLogRepository(_context);
 
+        public ILicenseRepository Licenses =>
+            _licenseRepository ??= new LicenseRepository(_context);
+
+        public ILicenseSubscriptionRepository LicenseSubscriptions =>
+            _licenseSubscriptionRepository ??= new LicenseSubscriptionRepository(_context);
+
+        public IPackageRepository Packages =>
+            _packageRepository ??= new PackageRepository(_context);
+
+        public IModuleRepository Modules =>
+            _moduleRepository ??= new ModuleRepository(_context);
+
+        public IPackageModuleRepository PackageModules =>
+            _packageModuleRepository ??= new PackageModuleRepository(_context);
+
+        public IProductRepository Products =>
+            _productRepository ??= new ProductRepository(_context);
+
+        public IAddressRepository Addresses =>
+            _addressRepository ??= new AddressRepository(_context);
+
+        public IStoreItemRepository StoreItems =>_storeItemRepository ??= new StoreItemRepository(_context);
         public async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
             return await _context.SaveChangesAsync(cancellationToken);

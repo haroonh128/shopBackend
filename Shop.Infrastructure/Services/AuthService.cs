@@ -5,6 +5,7 @@ using Shop.Core.DTOs;
 using Shop.Core.Interfaces.Repositories;
 using Shop.Entities;
 using Microsoft.Extensions.Logging;
+using Shop.Core.Interfaces.Services;
 
 namespace Shop.Infrastructure.Services
 {
@@ -77,8 +78,13 @@ namespace Shop.Infrastructure.Services
                     Id = Guid.NewGuid(),
                     PhoneNumber = request.PhoneNumber,
                     PinHash = PasswordHasher.HashPin(request.Pin),
-                    IsTwoFactorEnabled = false,
+                    FirstName = request.FirstName,
+                    LastName = request.LastName,
+                    Email = request.Email,
+                    IsTwoFactorEnabled = request.TwoFactorAuthentication,
+                    CNIC = request.CNIC,
                     Active = true,
+                    AppType = request.AppType,
                     CreatedAt = DateTime.UtcNow
                 };
 
