@@ -1,4 +1,4 @@
-﻿namespace Shop.Core.Enums
+﻿namespace Shop.Common.enums
 {
     public enum ResponseStatus
     {

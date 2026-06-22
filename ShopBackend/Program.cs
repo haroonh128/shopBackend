@@ -1,9 +1,12 @@
-﻿// Api/Program.cs
+// Api/Program.cs
 using System.Text;
+using System.Text.Json;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Shop.Core.DTOs;
 using Shop.Core.Interfaces.Repositories;
 using Shop.Core.Interfaces.Services;
 using Shop.Infrastructure.Data;
@@ -15,7 +18,24 @@ using ShopBackend.Middleware;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container
-builder.Services.AddControllers();
+builder.Services.AddControllers()
+    .ConfigureApiBehaviorOptions(options =>
+    {
+        options.InvalidModelStateResponseFactory = context =>
+        {
+            var errors = context.ModelState
+                .Where(x => x.Value?.Errors.Count > 0)
+                .SelectMany(x => x.Value!.Errors.Select(e => string.IsNullOrWhiteSpace(e.ErrorMessage) ? "Invalid request value." : e.ErrorMessage))
+                .ToList();
+
+            var response = BaseResponse<object>.ErrorResponse(
+                "Validation failed.",
+                errors.Count > 0 ? errors : new List<string> { "One or more validation errors occurred." }
+            );
+
+            return new BadRequestObjectResult(response);
+        };
+    });
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddHttpContextAccessor();
 
@@ -36,11 +56,12 @@ builder.Services.AddSwaggerGen(c =>
 
     c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {
-        Description = "JWT Authorization header using the Bearer scheme. Enter 'Bearer' [space] and then your token in the text input below.\n\nExample: 'Bearer 12345abcdef'",
+        Description = "JWT Authorization. Paste only your access token from the login/verify-otp response (no 'Bearer' prefix needed).",
         Name = "Authorization",
         In = ParameterLocation.Header,
-        Type = SecuritySchemeType.ApiKey,
-        Scheme = "Bearer"
+        Type = SecuritySchemeType.Http,
+        Scheme = "bearer",
+        BearerFormat = "JWT"
     });
 
     c.AddSecurityRequirement(new OpenApiSecurityRequirement
@@ -99,6 +120,10 @@ builder.Services.AddScoped<ITokenService, TokenService>();
     builder.Services.AddScoped<ISmsService, SmsService>();
 
 builder.Services.AddScoped<IAuditService, AuditService>();
+builder.Services.AddScoped<ILicenseService, LicenseService>();
+builder.Services.AddScoped<IPackageService, PackageService>();
+builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<IAddressService, AddressService>();
 
 // JWT Authentication
 var jwtKey = builder.Configuration["Jwt:Key"]
@@ -112,6 +137,11 @@ builder.Services.AddAuthentication(options =>
 })
 .AddJwtBearer(options =>
 {
+    var jsonOptions = new JsonSerializerOptions
+    {
+        PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+    };
+
     options.SaveToken = true;
     options.RequireHttpsMetadata = !builder.Environment.IsDevelopment();
     options.TokenValidationParameters = new TokenValidationParameters
@@ -130,36 +160,66 @@ builder.Services.AddAuthentication(options =>
     {
         OnAuthenticationFailed = context =>
         {
-            if (context.Exception.GetType() == typeof(SecurityTokenExpiredException))
-            {
-                context.Response.Headers.Add("Token-Expired", "true");
-            }
+            if (context.Exception is SecurityTokenExpiredException)
+                context.Response.Headers.Append("Token-Expired", "true");
             return Task.CompletedTask;
+        },
+        OnChallenge = async context =>
+        {
+            context.HandleResponse();
+
+            if (!context.Response.HasStarted)
+            {
+                context.Response.StatusCode = StatusCodes.Status401Unauthorized;
+                context.Response.ContentType = "application/json";
+
+                var response = BaseResponse<object>.ErrorResponse(
+                    "Unauthorized access.",
+                    new List<string> { "A valid access token is required." }
+                );
+
+                await context.Response.WriteAsync(JsonSerializer.Serialize(response, jsonOptions));
+            }
+        },
+        OnForbidden = async context =>
+        {
+            if (!context.Response.HasStarted)
+            {
+                context.Response.StatusCode = StatusCodes.Status403Forbidden;
+                context.Response.ContentType = "application/json";
+
+                var response = BaseResponse<object>.ErrorResponse(
+                    "Forbidden.",
+                    new List<string> { "You do not have permission to access this resource." }
+                );
+
+                await context.Response.WriteAsync(JsonSerializer.Serialize(response, jsonOptions));
+            }
         }
     };
 });
 
-builder.Services.AddAuthorization();
 
 // CORS
+var allowedOrigins = builder.Configuration.GetSection("AllowedOrigins").Get<string[]>() ?? Array.Empty<string>();
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowAll", policy =>
+    options.AddPolicy("DevCors", policy =>
     {
-        policy.AllowAnyOrigin()
-              .AllowAnyMethod()
-              .AllowAnyHeader();
-    });
-
-    // Production CORS policy
-    options.AddPolicy("Production", policy =>
-    {
-        policy.WithOrigins(builder.Configuration.GetSection("AllowedOrigins").Get<string[]>() ?? Array.Empty<string>())
+        policy.SetIsOriginAllowed(_ => true)
               .AllowAnyMethod()
               .AllowAnyHeader()
               .AllowCredentials();
     });
+
+    options.AddPolicy("ConfiguredOrigins", policy =>
+    {
+        policy.WithOrigins(allowedOrigins)
+              .AllowAnyMethod()
+              .AllowAnyHeader();
+    });
 });
+builder.Services.AddAuthorization();
 
 // Health checks
 builder.Services.AddHealthChecks()
@@ -188,6 +248,9 @@ else
     });
 }
 
+// Apply CORS before custom middleware and auth so preflight (OPTIONS) can succeed.
+app.UseCors(app.Environment.IsDevelopment() ? "DevCors" : "ConfiguredOrigins");
+
 // Custom middleware
 app.UseMiddleware<ExceptionHandlingMiddleware>();
 app.UseMiddleware<RequestLoggingMiddleware>();
@@ -197,8 +260,6 @@ if (appMode != "Desktop")
     app.UseHttpsRedirection();
 }
 app.UseResponseCompression();
-
-app.UseCors(app.Environment.IsDevelopment() ? "AllowAll" : "Production");
 
 app.UseAuthentication();
 app.UseAuthorization();
