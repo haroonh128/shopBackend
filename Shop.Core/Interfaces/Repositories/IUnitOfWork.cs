@@ -14,6 +14,8 @@ namespace Shop.Core.Interfaces.Repositories
         IProductRepository Products { get; }
         IAddressRepository Addresses { get; }
         IStoreItemRepository StoreItems { get; }
+        IMeasurementRepository Measurements { get; }
+        IOrderRepository Orders { get; }
 
         Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
         Task BeginTransactionAsync();

@@ -22,6 +22,8 @@ namespace Shop.Infrastructure.UnitOfWork
         private IProductRepository? _productRepository;
         private IAddressRepository? _addressRepository;
         private IStoreItemRepository? _storeItemRepository;
+        private IMeasurementRepository? _measurementRepository;
+        private IOrderRepository? _orderRepository;
 
         public UnitOfWork(ApplicationDbContext context)
         {
@@ -61,7 +63,14 @@ namespace Shop.Infrastructure.UnitOfWork
         public IAddressRepository Addresses =>
             _addressRepository ??= new AddressRepository(_context);
 
-        public IStoreItemRepository StoreItems =>_storeItemRepository ??= new StoreItemRepository(_context);
+        public IStoreItemRepository StoreItems => _storeItemRepository ??= new StoreItemRepository(_context);
+
+        public IMeasurementRepository Measurements =>
+            _measurementRepository ??= new MeasurementRepository(_context);
+
+        public IOrderRepository Orders =>
+            _orderRepository ??= new OrderRepository(_context);
+
         public async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
             return await _context.SaveChangesAsync(cancellationToken);
