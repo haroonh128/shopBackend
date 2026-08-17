@@ -22,6 +22,7 @@ namespace Shop.Infrastructure.Data
         public DbSet<Measurements> Measurements { get; set; }
         public DbSet<Orders> Orders { get; set; }
         public DbSet<Client> Clients { get; set; }
+        public DbSet<Cost> Costs { get; set; }
         public DbSet<Package> Packages { get; set; }
         public DbSet<Modules> Modules { get; set; }
         public DbSet<PackageModule> PackageModules { get; set; }

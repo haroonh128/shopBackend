@@ -41,6 +41,8 @@ namespace Shop.Core.DTOs
         public bool? BackPocket { get; set; }
         public bool? BreastPocket { get; set; }
         public bool? InnerPocket { get; set; }
+        public bool? PatchPocket { get; set; }
+        public bool? TicketPocket { get; set; }
 
         public string? CollarType { get; set; }
         public string? CuffType { get; set; }
@@ -48,6 +50,14 @@ namespace Shop.Core.DTOs
         public string? TrouserType { get; set; }
         public string? LapelStyle { get; set; }
         public string? NeckStyle { get; set; }
+        public string? ArmType { get; set; }
+        public string? VentType { get; set; }
+        public string? WaistcoatType { get; set; }
+        public string? RiseType { get; set; }
+        public string? HemType { get; set; }
+        public string? FrontPocketType { get; set; }
+        public string? BackPocketType { get; set; }
+        public bool? ElbowPatch { get; set; }
 
         public decimal? Height { get; set; }
         public decimal? Weight { get; set; }
@@ -96,6 +106,8 @@ namespace Shop.Core.DTOs
         public bool? BackPocket { get; set; }
         public bool? BreastPocket { get; set; }
         public bool? InnerPocket { get; set; }
+        public bool? PatchPocket { get; set; }
+        public bool? TicketPocket { get; set; }
 
         public string? CollarType { get; set; }
         public string? CuffType { get; set; }
@@ -103,6 +115,14 @@ namespace Shop.Core.DTOs
         public string? TrouserType { get; set; }
         public string? LapelStyle { get; set; }
         public string? NeckStyle { get; set; }
+        public string? ArmType { get; set; }
+        public string? VentType { get; set; }
+        public string? WaistcoatType { get; set; }
+        public string? RiseType { get; set; }
+        public string? HemType { get; set; }
+        public string? FrontPocketType { get; set; }
+        public string? BackPocketType { get; set; }
+        public bool? ElbowPatch { get; set; }
 
         public decimal? Height { get; set; }
         public decimal? Weight { get; set; }

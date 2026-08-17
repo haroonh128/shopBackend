@@ -47,6 +47,8 @@ public class Measurements : Base
     public bool? BackPocket { get; set; }
     public bool? BreastPocket { get; set; }
     public bool? InnerPocket { get; set; }
+    public bool? PatchPocket { get; set; }
+    public bool? TicketPocket { get; set; }
 
     // Style Options
     public string? CollarType { get; set; }
@@ -55,6 +57,14 @@ public class Measurements : Base
     public string? TrouserType { get; set; }
     public string? LapelStyle { get; set; }
     public string? NeckStyle { get; set; }
+    public string? ArmType { get; set; }
+    public string? VentType { get; set; }
+    public string? WaistcoatType { get; set; }
+    public string? RiseType { get; set; }
+    public string? HemType { get; set; }
+    public string? FrontPocketType { get; set; }
+    public string? BackPocketType { get; set; }
+    public bool? ElbowPatch { get; set; }
 
     // Misc
     public decimal? Height { get; set; }

@@ -24,6 +24,8 @@ namespace Shop.Infrastructure.UnitOfWork
         private IStoreItemRepository? _storeItemRepository;
         private IMeasurementRepository? _measurementRepository;
         private IOrderRepository? _orderRepository;
+        private IClientRepository? _clientRepository;
+        private ICostRepository? _costRepository;
 
         public UnitOfWork(ApplicationDbContext context)
         {
@@ -70,6 +72,12 @@ namespace Shop.Infrastructure.UnitOfWork
 
         public IOrderRepository Orders =>
             _orderRepository ??= new OrderRepository(_context);
+
+        public IClientRepository Clients =>
+            _clientRepository ??= new ClientRepository(_context);
+
+        public ICostRepository Costs =>
+            _costRepository ??= new CostRepository(_context);
 
         public async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {

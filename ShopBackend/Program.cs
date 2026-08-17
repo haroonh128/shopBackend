@@ -1,6 +1,7 @@
 // Api/Program.cs
 using System.Text;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -19,6 +20,12 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container
 builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+    {
+        // Accept gender as "Male"/"male" or 0/1/2
+        options.JsonSerializerOptions.Converters.Add(
+            new JsonStringEnumConverter(JsonNamingPolicy.CamelCase, allowIntegerValues: true));
+    })
     .ConfigureApiBehaviorOptions(options =>
     {
         options.InvalidModelStateResponseFactory = context =>
@@ -126,6 +133,8 @@ builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<IAddressService, AddressService>();
 builder.Services.AddScoped<IMeasurementService, MeasurementService>();
 builder.Services.AddScoped<IOrderService, OrderService>();
+builder.Services.AddScoped<IClientService, ClientService>();
+builder.Services.AddScoped<ICostService, CostService>();
 
 // JWT Authentication
 var jwtKey = builder.Configuration["Jwt:Key"]

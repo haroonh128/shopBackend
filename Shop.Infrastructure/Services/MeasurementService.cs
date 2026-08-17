@@ -162,6 +162,8 @@ namespace Shop.Infrastructure.Services
             m.BackPocket = r.BackPocket;
             m.BreastPocket = r.BreastPocket;
             m.InnerPocket = r.InnerPocket;
+            m.PatchPocket = r.PatchPocket;
+            m.TicketPocket = r.TicketPocket;
 
             m.CollarType = r.CollarType;
             m.CuffType = r.CuffType;
@@ -169,6 +171,14 @@ namespace Shop.Infrastructure.Services
             m.TrouserType = r.TrouserType;
             m.LapelStyle = r.LapelStyle;
             m.NeckStyle = r.NeckStyle;
+            m.ArmType = r.ArmType;
+            m.VentType = r.VentType;
+            m.WaistcoatType = r.WaistcoatType;
+            m.RiseType = r.RiseType;
+            m.HemType = r.HemType;
+            m.FrontPocketType = r.FrontPocketType;
+            m.BackPocketType = r.BackPocketType;
+            m.ElbowPatch = r.ElbowPatch;
 
             m.Height = r.Height;
             m.Weight = r.Weight;
@@ -215,6 +225,8 @@ namespace Shop.Infrastructure.Services
             BackPocket = m.BackPocket,
             BreastPocket = m.BreastPocket,
             InnerPocket = m.InnerPocket,
+            PatchPocket = m.PatchPocket,
+            TicketPocket = m.TicketPocket,
 
             CollarType = m.CollarType,
             CuffType = m.CuffType,
@@ -222,6 +234,14 @@ namespace Shop.Infrastructure.Services
             TrouserType = m.TrouserType,
             LapelStyle = m.LapelStyle,
             NeckStyle = m.NeckStyle,
+            ArmType = m.ArmType,
+            VentType = m.VentType,
+            WaistcoatType = m.WaistcoatType,
+            RiseType = m.RiseType,
+            HemType = m.HemType,
+            FrontPocketType = m.FrontPocketType,
+            BackPocketType = m.BackPocketType,
+            ElbowPatch = m.ElbowPatch,
 
             Height = m.Height,
             Weight = m.Weight,

@@ -167,6 +167,9 @@ namespace Shop.Infrastructure.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
+                    b.Property<Guid>("ModuleId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(255)
@@ -183,6 +186,47 @@ namespace Shop.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Clients");
+                });
+
+            modelBuilder.Entity("Shop.Entities.Cost", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("Active")
+                        .HasColumnType("bit");
+
+                    b.Property<decimal>("Advance")
+                        .HasPrecision(18, 2)
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<Guid>("ClientId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<Guid?>("MeasurementId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Notes")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<decimal>("TotalCost")
+                        .HasPrecision(18, 2)
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Costs");
                 });
 
             modelBuilder.Entity("Shop.Entities.Expenses", b =>
@@ -387,8 +431,16 @@ namespace Shop.Infrastructure.Migrations
                         .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<string>("ArmType")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
                     b.Property<bool?>("BackPocket")
                         .HasColumnType("bit");
+
+                    b.Property<string>("BackPocketType")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
 
                     b.Property<decimal?>("Bicep")
                         .HasPrecision(18, 2)
@@ -431,6 +483,9 @@ namespace Shop.Infrastructure.Migrations
                         .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<bool?>("ElbowPatch")
+                        .HasColumnType("bit");
+
                     b.Property<string>("FitType")
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
@@ -438,9 +493,17 @@ namespace Shop.Infrastructure.Migrations
                     b.Property<bool?>("FrontPocket")
                         .HasColumnType("bit");
 
+                    b.Property<string>("FrontPocketType")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
                     b.Property<decimal?>("Height")
                         .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("HemType")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
 
                     b.Property<decimal?>("Hip")
                         .HasPrecision(18, 2)
@@ -488,9 +551,16 @@ namespace Shop.Infrastructure.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 
+                    b.Property<bool?>("PatchPocket")
+                        .HasColumnType("bit");
+
                     b.Property<decimal?>("Rise")
                         .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("RiseType")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
 
                     b.Property<decimal?>("Shoulder")
                         .HasPrecision(18, 2)
@@ -502,6 +572,9 @@ namespace Shop.Infrastructure.Migrations
                     b.Property<decimal?>("Thigh")
                         .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)");
+
+                    b.Property<bool?>("TicketPocket")
+                        .HasColumnType("bit");
 
                     b.Property<decimal?>("TrouserLength")
                         .HasPrecision(18, 2)
@@ -521,9 +594,17 @@ namespace Shop.Infrastructure.Migrations
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("VentType")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
                     b.Property<decimal?>("Waist")
                         .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("WaistcoatType")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
 
                     b.Property<decimal?>("Weight")
                         .HasPrecision(18, 2)
