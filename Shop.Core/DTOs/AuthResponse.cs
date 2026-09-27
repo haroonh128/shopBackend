@@ -16,5 +16,8 @@ namespace Shop.Core.DTOs
         public Guid Id { get; set; }
         public string PhoneNumber { get; set; } = string.Empty;
         public bool IsTwoFactorEnabled { get; set; }
+        public Guid? ModuleId { get; set; }
+        public bool IsAdmin { get; set; }
+        public DateTime? SubscriptionValidUntil { get; set; }
     }
 }

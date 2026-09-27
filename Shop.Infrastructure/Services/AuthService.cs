@@ -72,6 +72,14 @@ namespace Shop.Infrastructure.Services
 
                 await _unitOfWork.BeginTransactionAsync();
 
+                if (request.ModuleId == Guid.Empty)
+                {
+                    return BaseResponse<AuthResponse>.ErrorResponse(
+                        "Module is required",
+                        new List<string> { "Please select a module" }
+                    );
+                }
+
                 // Create user
                 var user = new User
                 {
@@ -85,6 +93,9 @@ namespace Shop.Infrastructure.Services
                     CNIC = request.CNIC,
                     Active = true,
                     AppType = request.AppType,
+                    ModuleId = request.ModuleId,
+                    IsAdmin = false,
+                    SubscriptionValidUntil = DateTime.UtcNow.Date.AddMonths(1),
                     CreatedAt = DateTime.UtcNow
                 };
 
@@ -118,7 +129,10 @@ namespace Shop.Infrastructure.Services
                     {
                         Id = user.Id,
                         PhoneNumber = user.PhoneNumber,
-                        IsTwoFactorEnabled = user.IsTwoFactorEnabled
+                        IsTwoFactorEnabled = user.IsTwoFactorEnabled,
+                        ModuleId = user.ModuleId,
+                        IsAdmin = user.IsAdmin,
+                        SubscriptionValidUntil = user.SubscriptionValidUntil
                     }
                 };
 
@@ -161,6 +175,11 @@ namespace Shop.Infrastructure.Services
                 if (!user.Active)
                 {
                     return BaseResponse<AuthResponse>.ErrorResponse("Account is deactivated");
+                }
+
+                if (AdminUserService.IsSubscriptionExpired(user))
+                {
+                    return BaseResponse<AuthResponse>.ErrorResponse("Subscription expired");
                 }
 
                 // Check if 2FA is enabled
@@ -214,7 +233,10 @@ namespace Shop.Infrastructure.Services
                         {
                             Id = user.Id,
                             PhoneNumber = user.PhoneNumber,
-                            IsTwoFactorEnabled = user.IsTwoFactorEnabled
+                            IsTwoFactorEnabled = user.IsTwoFactorEnabled,
+                            ModuleId = user.ModuleId,
+                            IsAdmin = user.IsAdmin,
+                            SubscriptionValidUntil = user.SubscriptionValidUntil
                         }
                     };
 
@@ -257,7 +279,10 @@ namespace Shop.Infrastructure.Services
                     {
                         Id = user.Id,
                         PhoneNumber = user.PhoneNumber,
-                        IsTwoFactorEnabled = user.IsTwoFactorEnabled
+                        IsTwoFactorEnabled = user.IsTwoFactorEnabled,
+                        ModuleId = user.ModuleId,
+                        IsAdmin = user.IsAdmin,
+                        SubscriptionValidUntil = user.SubscriptionValidUntil
                     }
                 };
 
@@ -286,6 +311,18 @@ namespace Shop.Infrastructure.Services
                 {
                     await _unitOfWork.RollbackTransactionAsync();
                     return BaseResponse<AuthResponse>.ErrorResponse("Invalid request");
+                }
+
+                if (!user.Active)
+                {
+                    await _unitOfWork.RollbackTransactionAsync();
+                    return BaseResponse<AuthResponse>.ErrorResponse("Account is deactivated");
+                }
+
+                if (AdminUserService.IsSubscriptionExpired(user))
+                {
+                    await _unitOfWork.RollbackTransactionAsync();
+                    return BaseResponse<AuthResponse>.ErrorResponse("Subscription expired");
                 }
 
                 var otp = await _unitOfWork.OtpCodes.GetValidOtpAsync(user.Id, request.OtpCode);
@@ -334,7 +371,10 @@ namespace Shop.Infrastructure.Services
                     {
                         Id = user.Id,
                         PhoneNumber = user.PhoneNumber,
-                        IsTwoFactorEnabled = user.IsTwoFactorEnabled
+                        IsTwoFactorEnabled = user.IsTwoFactorEnabled,
+                        ModuleId = user.ModuleId,
+                        IsAdmin = user.IsAdmin,
+                        SubscriptionValidUntil = user.SubscriptionValidUntil
                     }
                 };
 
@@ -363,6 +403,18 @@ namespace Shop.Infrastructure.Services
                 {
                     await _unitOfWork.RollbackTransactionAsync();
                     return BaseResponse<AuthResponse>.ErrorResponse("Invalid or expired refresh token");
+                }
+
+                if (!tokenEntity.User.Active)
+                {
+                    await _unitOfWork.RollbackTransactionAsync();
+                    return BaseResponse<AuthResponse>.ErrorResponse("Account is deactivated");
+                }
+
+                if (AdminUserService.IsSubscriptionExpired(tokenEntity.User))
+                {
+                    await _unitOfWork.RollbackTransactionAsync();
+                    return BaseResponse<AuthResponse>.ErrorResponse("Subscription expired");
                 }
 
                 // Revoke old token
@@ -397,7 +449,10 @@ namespace Shop.Infrastructure.Services
                     {
                         Id = tokenEntity.User.Id,
                         PhoneNumber = tokenEntity.User.PhoneNumber,
-                        IsTwoFactorEnabled = tokenEntity.User.IsTwoFactorEnabled
+                        IsTwoFactorEnabled = tokenEntity.User.IsTwoFactorEnabled,
+                        ModuleId = tokenEntity.User.ModuleId,
+                        IsAdmin = tokenEntity.User.IsAdmin,
+                        SubscriptionValidUntil = tokenEntity.User.SubscriptionValidUntil
                     }
                 };
 

@@ -28,10 +28,15 @@ namespace Shop.Infrastructure.Repositories
                 .FirstOrDefaultAsync(u => u.Email == email && !u.IsDeleted);
         }
 
-        public async Task<bool> PhoneNumberExistsAsync(string phoneNumber)
+        public async Task<bool> PhoneNumberExistsAsync(string phoneNumber, Guid? excludeUserId = null)
         {
-            return await DbSet
-                .AnyAsync(u => u.PhoneNumber == phoneNumber && !u.IsDeleted);
+            var query = DbSet.Where(u => u.PhoneNumber == phoneNumber && !u.IsDeleted);
+            if (excludeUserId.HasValue)
+            {
+                query = query.Where(u => u.Id != excludeUserId.Value);
+            }
+
+            return await query.AnyAsync();
         }
 
         public async Task<IEnumerable<User>> GetActiveUsersAsync()
@@ -40,6 +45,31 @@ namespace Shop.Infrastructure.Repositories
                 .AsNoTracking()
                 .Where(u => u.Active && !u.IsDeleted)
                 .ToListAsync();
+        }
+
+        public async Task<IEnumerable<User>> GetAllRegisteredUsersAsync(string? search = null)
+        {
+            var query = DbSet.AsNoTracking().Where(u => !u.IsDeleted);
+
+            if (!string.IsNullOrWhiteSpace(search))
+            {
+                var term = search.Trim().ToLower();
+                query = query.Where(u =>
+                    u.PhoneNumber.ToLower().Contains(term) ||
+                    u.Email.ToLower().Contains(term) ||
+                    u.FirstName.ToLower().Contains(term) ||
+                    u.LastName.ToLower().Contains(term) ||
+                    u.CNIC.ToLower().Contains(term));
+            }
+
+            return await query
+                .OrderByDescending(u => u.CreatedAt)
+                .ToListAsync();
+        }
+
+        public async Task<bool> AnyAdminExistsAsync()
+        {
+            return await DbSet.AnyAsync(u => u.IsAdmin && !u.IsDeleted);
         }
 
         public override async Task<User?> GetByIdAsync(Guid id)

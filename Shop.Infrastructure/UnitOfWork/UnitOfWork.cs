@@ -27,6 +27,19 @@ namespace Shop.Infrastructure.UnitOfWork
         private IClientRepository? _clientRepository;
         private ICostRepository? _costRepository;
 
+        private IPracticeRepository? _practiceRepository;
+        private IDoctorRepository? _doctorRepository;
+        private IPatientRepository? _patientRepository;
+        private IConsultationRepository? _consultationRepository;
+        private IConsultationVitalsRepository? _consultationVitalsRepository;
+        private IConsultationDiagnosisRepository? _consultationDiagnosisRepository;
+        private IConsultationTestRepository? _consultationTestRepository;
+        private IDiagnosisRepository? _diagnosisRepository;
+        private ITestRepository? _testRepository;
+        private IMedicationRepository? _medicationRepository;
+        private IPrescriptionRepository? _prescriptionRepository;
+        private IPrescriptionItemRepository? _prescriptionItemRepository;
+
         public UnitOfWork(ApplicationDbContext context)
         {
             _context = context;
@@ -78,6 +91,42 @@ namespace Shop.Infrastructure.UnitOfWork
 
         public ICostRepository Costs =>
             _costRepository ??= new CostRepository(_context);
+
+        public IPracticeRepository Practices =>
+            _practiceRepository ??= new PracticeRepository(_context);
+
+        public IDoctorRepository Doctors =>
+            _doctorRepository ??= new DoctorRepository(_context);
+
+        public IPatientRepository Patients =>
+            _patientRepository ??= new PatientRepository(_context);
+
+        public IConsultationRepository Consultations =>
+            _consultationRepository ??= new ConsultationRepository(_context);
+
+        public IConsultationVitalsRepository ConsultationVitals =>
+            _consultationVitalsRepository ??= new ConsultationVitalsRepository(_context);
+
+        public IConsultationDiagnosisRepository ConsultationDiagnoses =>
+            _consultationDiagnosisRepository ??= new ConsultationDiagnosisRepository(_context);
+
+        public IConsultationTestRepository ConsultationTests =>
+            _consultationTestRepository ??= new ConsultationTestRepository(_context);
+
+        public IDiagnosisRepository Diagnoses =>
+            _diagnosisRepository ??= new DiagnosisRepository(_context);
+
+        public ITestRepository Tests =>
+            _testRepository ??= new TestRepository(_context);
+
+        public IMedicationRepository Medications =>
+            _medicationRepository ??= new MedicationRepository(_context);
+
+        public IPrescriptionRepository Prescriptions =>
+            _prescriptionRepository ??= new PrescriptionRepository(_context);
+
+        public IPrescriptionItemRepository PrescriptionItems =>
+            _prescriptionItemRepository ??= new PrescriptionItemRepository(_context);
 
         public async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {

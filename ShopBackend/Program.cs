@@ -1,4 +1,3 @@
-// Api/Program.cs
 using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -123,6 +122,7 @@ builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 // Services
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IAdminUserService, AdminUserService>();
 builder.Services.AddScoped<ITokenService, TokenService>();
     builder.Services.AddScoped<ISmsService, SmsService>();
 
@@ -135,6 +135,11 @@ builder.Services.AddScoped<IMeasurementService, MeasurementService>();
 builder.Services.AddScoped<IOrderService, OrderService>();
 builder.Services.AddScoped<IClientService, ClientService>();
 builder.Services.AddScoped<ICostService, CostService>();
+builder.Services.AddScoped<IPracticeService, PracticeService>();
+builder.Services.AddScoped<IDoctorService, DoctorService>();
+builder.Services.AddScoped<IPatientService, PatientService>();
+builder.Services.AddScoped<IConsultationService, ConsultationService>();
+builder.Services.AddScoped<IClinicMasterService, ClinicMasterService>();
 
 // JWT Authentication
 var jwtKey = builder.Configuration["Jwt:Key"]
@@ -164,7 +169,8 @@ builder.Services.AddAuthentication(options =>
         ValidIssuer = builder.Configuration["Jwt:Issuer"],
         ValidAudience = builder.Configuration["Jwt:Audience"],
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey)),
-        ClockSkew = TimeSpan.Zero
+        ClockSkew = TimeSpan.Zero,
+        RoleClaimType = System.Security.Claims.ClaimTypes.Role
     };
 
     options.Events = new JwtBearerEvents
@@ -279,8 +285,7 @@ app.MapControllers();
 
 app.MapHealthChecks("/health");
 
-// Seed database in development
-if (app.Environment.IsDevelopment())
+// Apply migrations and seed default admin when needed
 {
     using var scope = app.Services.CreateScope();
     var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
@@ -289,10 +294,36 @@ if (app.Environment.IsDevelopment())
     {
         await context.Database.MigrateAsync();
         app.Logger.LogInformation("Database migrated successfully");
+
+        if (!await context.Users.AnyAsync(u => u.IsAdmin && !u.IsDeleted))
+        {
+            var phone = app.Configuration["AdminSeed:PhoneNumber"] ?? "+920000000000";
+            var pin = app.Configuration["AdminSeed:Pin"] ?? "0000";
+
+            context.Users.Add(new Shop.Entities.User
+            {
+                Id = Guid.NewGuid(),
+                PhoneNumber = phone,
+                PinHash = Shop.Common.Helpers.PasswordHasher.HashPin(pin),
+                FirstName = "System",
+                LastName = "Admin",
+                Email = app.Configuration["AdminSeed:Email"] ?? "admin@shop.local",
+                CNIC = "00000-0000000-0",
+                AppType = "Admin",
+                IsAdmin = true,
+                Active = true,
+                IsDeleted = false,
+                IsTwoFactorEnabled = false,
+                CreatedAt = DateTime.UtcNow,
+                UpdatedAt = DateTime.UtcNow
+            });
+            await context.SaveChangesAsync();
+            app.Logger.LogInformation("Seeded default admin user with phone {Phone}", phone);
+        }
     }
     catch (Exception ex)
     {
-        app.Logger.LogError(ex, "An error occurred while migrating the database");
+        app.Logger.LogError(ex, "An error occurred while migrating or seeding the database");
     }
 }
 

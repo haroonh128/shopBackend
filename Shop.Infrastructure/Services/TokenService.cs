@@ -19,12 +19,7 @@ namespace Shop.Infrastructure.Services
 
         public string GenerateJwtToken(User user)
         {
-            var claims = new[]
-            {
-            new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
-            new Claim(ClaimTypes.MobilePhone, user.PhoneNumber),
-            new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
-        };
+            var claims = BuildClaims(user);
 
             var key = new SymmetricSecurityKey(
                 Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]!));
@@ -43,12 +38,7 @@ namespace Shop.Infrastructure.Services
 
         public string GenerateAccessToken(User user)
         {
-            var claims = new[]
-            {
-                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
-                new Claim(ClaimTypes.MobilePhone, user.PhoneNumber),
-                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
-            };
+            var claims = BuildClaims(user);
 
             var key = new SymmetricSecurityKey(
                 Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]!));
@@ -68,6 +58,27 @@ namespace Shop.Infrastructure.Services
         public string GenerateRefreshToken()
         {
             return Convert.ToBase64String(System.Security.Cryptography.RandomNumberGenerator.GetBytes(64));
+        }
+
+        private static List<Claim> BuildClaims(User user)
+        {
+            var role = user.IsAdmin ? "Admin" : "User";
+            var claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+                new Claim(ClaimTypes.MobilePhone, user.PhoneNumber),
+                new Claim(ClaimTypes.Role, role),
+                new Claim("role", role),
+                new Claim("isAdmin", user.IsAdmin ? "true" : "false"),
+                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
+            };
+
+            if (user.ModuleId.HasValue)
+            {
+                claims.Add(new Claim("moduleId", user.ModuleId.Value.ToString()));
+            }
+
+            return claims;
         }
     }
 }

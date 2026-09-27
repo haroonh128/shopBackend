@@ -1,3 +1,4 @@
+using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Shop.Core.DTOs;
@@ -17,22 +18,22 @@ namespace ShopBackend.Controllers
             _clientService = clientService;
         }
 
-        /// <summary>Get all clients</summary>
+        /// <summary>Get all clients for the logged-in user</summary>
         [HttpGet]
         [ProducesResponseType(typeof(BaseResponse<IEnumerable<ClientResponse>>), StatusCodes.Status200OK)]
         public async Task<IActionResult> GetAll()
         {
-            var result = await _clientService.GetAllAsync();
+            var result = await _clientService.GetAllAsync(GetUserId());
             if (!result.Success) return BadRequest(result);
             return Ok(result);
         }
 
-        /// <summary>Get clients by module id</summary>
+        /// <summary>Get clients by module id for the logged-in user</summary>
         [HttpGet("by-module/{moduleId:guid}")]
         [ProducesResponseType(typeof(BaseResponse<IEnumerable<ClientResponse>>), StatusCodes.Status200OK)]
         public async Task<IActionResult> GetByModuleId(Guid moduleId)
         {
-            var result = await _clientService.GetByModuleIdAsync(moduleId);
+            var result = await _clientService.GetByModuleIdAsync(GetUserId(), moduleId);
             if (!result.Success) return BadRequest(result);
             return Ok(result);
         }
@@ -42,7 +43,7 @@ namespace ShopBackend.Controllers
         [ProducesResponseType(typeof(BaseResponse<ClientResponse>), StatusCodes.Status200OK)]
         public async Task<IActionResult> GetById(Guid id)
         {
-            var result = await _clientService.GetByIdAsync(id);
+            var result = await _clientService.GetByIdAsync(GetUserId(), id);
             if (!result.Success) return NotFound(result);
             return Ok(result);
         }
@@ -52,7 +53,7 @@ namespace ShopBackend.Controllers
         [ProducesResponseType(typeof(BaseResponse<ClientResponse>), StatusCodes.Status200OK)]
         public async Task<IActionResult> Create([FromBody] ClientRequest request)
         {
-            var result = await _clientService.CreateAsync(request);
+            var result = await _clientService.CreateAsync(GetUserId(), request);
             if (!result.Success) return BadRequest(result);
             return Ok(result);
         }
@@ -62,7 +63,7 @@ namespace ShopBackend.Controllers
         [ProducesResponseType(typeof(BaseResponse<ClientResponse>), StatusCodes.Status200OK)]
         public async Task<IActionResult> Update(Guid id, [FromBody] ClientRequest request)
         {
-            var result = await _clientService.UpdateAsync(id, request);
+            var result = await _clientService.UpdateAsync(GetUserId(), id, request);
             if (!result.Success) return NotFound(result);
             return Ok(result);
         }
@@ -72,9 +73,15 @@ namespace ShopBackend.Controllers
         [ProducesResponseType(typeof(BaseResponse<bool>), StatusCodes.Status200OK)]
         public async Task<IActionResult> Delete(Guid id)
         {
-            var result = await _clientService.DeleteAsync(id);
+            var result = await _clientService.DeleteAsync(GetUserId(), id);
             if (!result.Success) return NotFound(result);
             return Ok(result);
+        }
+
+        private Guid GetUserId()
+        {
+            var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            return Guid.Parse(userIdClaim!);
         }
     }
 }

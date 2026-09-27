@@ -11,5 +11,10 @@
         public string LastName { get; set; } = string.Empty;
         public string CNIC { get; set; } = string.Empty;
         public string AppType { get; set; } = string.Empty;
+        public Guid? ModuleId { get; set; }
+        /// <summary>Platform administrator — bypasses subscription validity checks.</summary>
+        public bool IsAdmin { get; set; }
+        /// <summary>Login allowed through end of this UTC date when subscription is paid.</summary>
+        public DateTime? SubscriptionValidUntil { get; set; }
     }
 }

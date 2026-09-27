@@ -19,6 +19,19 @@ namespace Shop.Core.Interfaces.Repositories
         IClientRepository Clients { get; }
         ICostRepository Costs { get; }
 
+        IPracticeRepository Practices { get; }
+        IDoctorRepository Doctors { get; }
+        IPatientRepository Patients { get; }
+        IConsultationRepository Consultations { get; }
+        IConsultationVitalsRepository ConsultationVitals { get; }
+        IConsultationDiagnosisRepository ConsultationDiagnoses { get; }
+        IConsultationTestRepository ConsultationTests { get; }
+        IDiagnosisRepository Diagnoses { get; }
+        ITestRepository Tests { get; }
+        IMedicationRepository Medications { get; }
+        IPrescriptionRepository Prescriptions { get; }
+        IPrescriptionItemRepository PrescriptionItems { get; }
+
         Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
         Task BeginTransactionAsync();
         Task CommitTransactionAsync();

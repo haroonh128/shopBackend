@@ -17,12 +17,12 @@ namespace Shop.Infrastructure.Services
             _logger = logger;
         }
 
-        public async Task<BaseResponse<ClientResponse>> GetByIdAsync(Guid id)
+        public async Task<BaseResponse<ClientResponse>> GetByIdAsync(Guid userId, Guid id)
         {
             try
             {
                 var client = await _unitOfWork.Clients.GetByIdAsync(id);
-                if (client == null || client.IsDeleted)
+                if (client == null || client.IsDeleted || client.UserId != userId)
                     return BaseResponse<ClientResponse>.ErrorResponse("Client not found");
                 return BaseResponse<ClientResponse>.SuccessResponse(MapToResponse(client));
             }
@@ -33,49 +33,44 @@ namespace Shop.Infrastructure.Services
             }
         }
 
-        public async Task<BaseResponse<IEnumerable<ClientResponse>>> GetAllAsync()
+        public async Task<BaseResponse<IEnumerable<ClientResponse>>> GetAllAsync(Guid userId)
         {
             try
             {
-                var list = (await _unitOfWork.Clients.GetAllAsync())
-                    .Where(c => !c.IsDeleted)
+                var list = (await _unitOfWork.Clients.GetByUserIdAsync(userId))
                     .Select(MapToResponse)
                     .ToList();
                 return BaseResponse<IEnumerable<ClientResponse>>.SuccessResponse(list);
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Error getting clients");
+                _logger.LogError(ex, "Error getting clients for user {UserId}", userId);
                 return BaseResponse<IEnumerable<ClientResponse>>.ErrorResponse("An error occurred", new List<string> { ex.Message });
             }
         }
 
-        public async Task<BaseResponse<IEnumerable<ClientResponse>>> GetByModuleIdAsync(Guid moduleId)
+        public async Task<BaseResponse<IEnumerable<ClientResponse>>> GetByModuleIdAsync(Guid userId, Guid moduleId)
         {
             try
             {
-                var list = (await _unitOfWork.Clients.GetByModuleIdAsync(moduleId))
+                var list = (await _unitOfWork.Clients.GetByModuleIdAsync(userId, moduleId))
                     .Select(MapToResponse)
                     .ToList();
                 return BaseResponse<IEnumerable<ClientResponse>>.SuccessResponse(list);
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Error getting clients for module {ModuleId}", moduleId);
+                _logger.LogError(ex, "Error getting clients for user {UserId} module {ModuleId}", userId, moduleId);
                 return BaseResponse<IEnumerable<ClientResponse>>.ErrorResponse("An error occurred", new List<string> { ex.Message });
             }
         }
 
-        public async Task<BaseResponse<ClientResponse>> CreateAsync(ClientRequest request)
+        public async Task<BaseResponse<ClientResponse>> CreateAsync(Guid userId, ClientRequest request)
         {
             try
             {
                 if (request.ModuleId == Guid.Empty)
                     return BaseResponse<ClientResponse>.ErrorResponse("ModuleId is required");
-
-                //var module = await _unitOfWork.Modules.GetByIdAsync(request.ModuleId);
-                //if (module == null || module.IsDeleted)
-                //    return BaseResponse<ClientResponse>.ErrorResponse("Module not found");
 
                 var client = new Client
                 {
@@ -84,6 +79,7 @@ namespace Shop.Infrastructure.Services
                     Phone = request.Phone,
                     Address = request.Address,
                     Gender = request.Gender,
+                    UserId = userId,
                     ModuleId = request.ModuleId,
                     CreatedAt = DateTime.UtcNow,
                     IsDeleted = false,
@@ -95,25 +91,21 @@ namespace Shop.Infrastructure.Services
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Error creating client");
+                _logger.LogError(ex, "Error creating client for user {UserId}", userId);
                 return BaseResponse<ClientResponse>.ErrorResponse("An error occurred", new List<string> { ex.Message });
             }
         }
 
-        public async Task<BaseResponse<ClientResponse>> UpdateAsync(Guid id, ClientRequest request)
+        public async Task<BaseResponse<ClientResponse>> UpdateAsync(Guid userId, Guid id, ClientRequest request)
         {
             try
             {
                 var client = await _unitOfWork.Clients.GetByIdAsync(id);
-                if (client == null || client.IsDeleted)
+                if (client == null || client.IsDeleted || client.UserId != userId)
                     return BaseResponse<ClientResponse>.ErrorResponse("Client not found");
 
                 if (request.ModuleId == Guid.Empty)
                     return BaseResponse<ClientResponse>.ErrorResponse("ModuleId is required");
-
-                //var module = await _unitOfWork.Modules.GetByIdAsync(request.ModuleId);
-                //if (module == null || module.IsDeleted)
-                //    return BaseResponse<ClientResponse>.ErrorResponse($"Module not found: {request.ModuleId}");
 
                 client.Name = request.Name;
                 client.Description = request.Description;
@@ -135,12 +127,12 @@ namespace Shop.Infrastructure.Services
             }
         }
 
-        public async Task<BaseResponse<bool>> DeleteAsync(Guid id)
+        public async Task<BaseResponse<bool>> DeleteAsync(Guid userId, Guid id)
         {
             try
             {
                 var client = await _unitOfWork.Clients.GetByIdAsync(id);
-                if (client == null || client.IsDeleted)
+                if (client == null || client.IsDeleted || client.UserId != userId)
                     return BaseResponse<bool>.ErrorResponse("Client not found");
 
                 client.IsDeleted = true;
@@ -164,6 +156,7 @@ namespace Shop.Infrastructure.Services
             Phone = c.Phone,
             Address = c.Address,
             Gender = c.Gender,
+            UserId = c.UserId,
             ModuleId = c.ModuleId,
             CreatedAt = c.CreatedAt,
             UpdatedAt = c.UpdatedAt

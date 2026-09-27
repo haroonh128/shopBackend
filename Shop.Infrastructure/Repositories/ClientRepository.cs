@@ -11,11 +11,19 @@ namespace Shop.Infrastructure.Repositories
         {
         }
 
-        public async Task<IEnumerable<Client>> GetByModuleIdAsync(Guid moduleId)
+        public async Task<IEnumerable<Client>> GetByUserIdAsync(Guid userId)
         {
             return await DbSet
                 .AsNoTracking()
-                .Where(c => c.ModuleId == moduleId && !c.IsDeleted)
+                .Where(c => c.UserId == userId && !c.IsDeleted)
+                .ToListAsync();
+        }
+
+        public async Task<IEnumerable<Client>> GetByModuleIdAsync(Guid userId, Guid moduleId)
+        {
+            return await DbSet
+                .AsNoTracking()
+                .Where(c => c.UserId == userId && c.ModuleId == moduleId && !c.IsDeleted)
                 .ToListAsync();
         }
     }

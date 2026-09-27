@@ -9,5 +9,9 @@ public class Client : Base
     public string Phone { get; set; } = string.Empty;
     public string Address { get; set; } = string.Empty;
     public Gender Gender { get; set; }
+
+    // Shop owner / app subscriber who owns this client
+    public Guid UserId { get; set; }
+
     public Guid ModuleId { get; set; }
 }
