@@ -11,6 +11,7 @@ namespace Shop.Infrastructure.Services
         Task<BaseResponse<AuthResponse>> RegisterAsync(RegisterRequest request);
         Task<BaseResponse<AuthResponse>> RefreshTokenAsync(string refreshToken);
         Task<BaseResponse<bool>> LogoutAsync(Guid userId);
-
+        Task<BaseResponse<bool>> ForgotPasswordAsync(ForgotPasswordRequest request);
+        Task<BaseResponse<bool>> ResetPasswordAsync(ResetPasswordRequest request);
     }
 }

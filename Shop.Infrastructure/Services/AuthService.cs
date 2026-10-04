@@ -16,17 +16,20 @@ namespace Shop.Infrastructure.Services
         private readonly IUnitOfWork _unitOfWork;
         private readonly ITokenService _tokenService;
         private readonly ISmsService _smsService;
+        private readonly IEmailService _emailService;
         private readonly ILogger<AuthService> _logger;
 
         public AuthService(
             IUnitOfWork unitOfWork,
             ITokenService tokenService,
             ISmsService smsService,
+            IEmailService emailService,
             ILogger<AuthService> logger)
         {
             _unitOfWork = unitOfWork;
             _tokenService = tokenService;
             _smsService = smsService;
+            _emailService = emailService;
             _logger = logger;
         }
 
@@ -522,6 +525,151 @@ namespace Shop.Infrastructure.Services
                 _logger.LogError(ex, "Error during logout");
                 return BaseResponse<bool>.ErrorResponse(
                     "An error occurred during logout",
+                    new List<string> { ex.Message }
+                );
+            }
+        }
+
+        public async Task<BaseResponse<bool>> ForgotPasswordAsync(ForgotPasswordRequest request)
+        {
+            const string genericMessage =
+                "If an account with that email exists, a reset code has been sent to your email address.";
+
+            try
+            {
+                if (string.IsNullOrWhiteSpace(request.Email) || !request.Email.Contains('@'))
+                {
+                    return BaseResponse<bool>.ErrorResponse(
+                        "Invalid email",
+                        new List<string> { "Please enter a valid email address" }
+                    );
+                }
+
+                var user = await _unitOfWork.Users.GetByEmailAsync(request.Email);
+
+                if (user == null || !user.Active || string.IsNullOrWhiteSpace(user.Email))
+                {
+                    return BaseResponse<bool>.SuccessResponse(true, genericMessage);
+                }
+
+                await _unitOfWork.BeginTransactionAsync();
+
+                var activeOtpCount = await _unitOfWork.OtpCodes.GetActiveOtpCountAsync(user.Id);
+                if (activeOtpCount >= AppConstants.MaxOtpAttempts)
+                {
+                    await _unitOfWork.RollbackTransactionAsync();
+                    return BaseResponse<bool>.ErrorResponse(
+                        "Too many reset requests. Please wait before trying again."
+                    );
+                }
+
+                var otpCode = OtpGenerator.GenerateOtp(AppConstants.OtpLength);
+
+                var otp = new OtpCode
+                {
+                    Id = Guid.NewGuid(),
+                    UserId = user.Id,
+                    Code = otpCode,
+                    CreatedAt = DateTime.UtcNow,
+                    ExpiresAt = DateTime.UtcNow.AddMinutes(AppConstants.OtpExpiryMinutes),
+                    IsUsed = false
+                };
+
+                await _unitOfWork.OtpCodes.AddAsync(otp);
+                await _unitOfWork.SaveChangesAsync();
+
+                var emailSent = await _emailService.SendOtpAsync(user.Email, otpCode);
+                if (!emailSent)
+                {
+                    await _unitOfWork.RollbackTransactionAsync();
+                    return BaseResponse<bool>.ErrorResponse(
+                        "Failed to send reset code. Please try again."
+                    );
+                }
+
+                await _unitOfWork.CommitTransactionAsync();
+
+                return BaseResponse<bool>.SuccessResponse(true, genericMessage);
+            }
+            catch (Exception ex)
+            {
+                await _unitOfWork.RollbackTransactionAsync();
+                _logger.LogError(ex, "Error during forgot password");
+                return BaseResponse<bool>.ErrorResponse(
+                    "An error occurred while processing your request",
+                    new List<string> { ex.Message }
+                );
+            }
+        }
+
+        public async Task<BaseResponse<bool>> ResetPasswordAsync(ResetPasswordRequest request)
+        {
+            try
+            {
+                if (string.IsNullOrWhiteSpace(request.Email) || !request.Email.Contains('@'))
+                {
+                    return BaseResponse<bool>.ErrorResponse(
+                        "Invalid email",
+                        new List<string> { "Please enter a valid email address" }
+                    );
+                }
+
+                if (string.IsNullOrWhiteSpace(request.OtpCode))
+                {
+                    return BaseResponse<bool>.ErrorResponse("OTP code is required");
+                }
+
+                if (!PinValidator.IsValid(request.NewPin, AppConstants.PinLength))
+                {
+                    return BaseResponse<bool>.ErrorResponse(
+                        "Invalid PIN",
+                        new List<string> { $"PIN must be exactly {AppConstants.PinLength} digits" }
+                    );
+                }
+
+                if (request.NewPin != request.ConfirmNewPin)
+                {
+                    return BaseResponse<bool>.ErrorResponse(
+                        "PIN confirmation does not match",
+                        new List<string> { "New PIN and Confirm PIN must match" }
+                    );
+                }
+
+                await _unitOfWork.BeginTransactionAsync();
+
+                var user = await _unitOfWork.Users.GetByEmailAsync(request.Email);
+                if (user == null || !user.Active)
+                {
+                    await _unitOfWork.RollbackTransactionAsync();
+                    return BaseResponse<bool>.ErrorResponse("Invalid email or OTP code");
+                }
+
+                var otp = await _unitOfWork.OtpCodes.GetValidOtpAsync(user.Id, request.OtpCode);
+                if (otp == null)
+                {
+                    await _unitOfWork.RollbackTransactionAsync();
+                    return BaseResponse<bool>.ErrorResponse("Invalid or expired OTP code");
+                }
+
+                otp.IsUsed = true;
+                otp.UsedAt = DateTime.UtcNow;
+                _unitOfWork.OtpCodes.Update(otp);
+
+                user.PinHash = PasswordHasher.HashPin(request.NewPin);
+                user.UpdatedAt = DateTime.UtcNow;
+                _unitOfWork.Users.Update(user);
+
+                await _unitOfWork.RefreshTokens.RevokeAllUserTokensAsync(user.Id);
+                await _unitOfWork.CommitTransactionAsync();
+
+                return BaseResponse<bool>.SuccessResponse(true, "PIN reset successfully. You can now log in.");
+            }
+            catch (Exception ex)
+            {
+                await _unitOfWork.RollbackTransactionAsync();
+                _logger.LogError(ex, "Error during password reset");
+                return BaseResponse<bool>.ErrorResponse(
+                    "An error occurred while resetting your PIN",
                     new List<string> { ex.Message }
                 );
             }

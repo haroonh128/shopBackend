@@ -23,9 +23,10 @@ namespace Shop.Infrastructure.Repositories
 
         public async Task<User?> GetByEmailAsync(string email)
         {
+            var normalized = email.Trim().ToLower();
             return await DbSet
                 .AsNoTracking()
-                .FirstOrDefaultAsync(u => u.Email == email && !u.IsDeleted);
+                .FirstOrDefaultAsync(u => u.Email.ToLower() == normalized && !u.IsDeleted);
         }
 
         public async Task<bool> PhoneNumberExistsAsync(string phoneNumber, Guid? excludeUserId = null)

@@ -21,8 +21,6 @@ namespace ShopBackend.Controllers
         /// Register a new user
         /// </summary>
         [HttpPost("register")]
-        [ProducesResponseType(typeof(BaseResponse<AuthResponse>), StatusCodes.Status200OK)]
-        [ProducesResponseType(typeof(BaseResponse<AuthResponse>), StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> Register([FromBody] RegisterRequest request)
         {
             var result = await _authService.RegisterAsync(request);
@@ -37,8 +35,6 @@ namespace ShopBackend.Controllers
         /// Login with phone number and PIN
         /// </summary>
         [HttpPost("login")]
-        [ProducesResponseType(typeof(BaseResponse<AuthResponse>), StatusCodes.Status200OK)]
-        [ProducesResponseType(typeof(BaseResponse<AuthResponse>), StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> Login([FromBody] LoginRequest request)
         {
             var result = await _authService.LoginAsync(request);
@@ -53,8 +49,6 @@ namespace ShopBackend.Controllers
         /// Verify OTP for two-factor authentication
         /// </summary>
         [HttpPost("verify-otp")]
-        [ProducesResponseType(typeof(BaseResponse<AuthResponse>), StatusCodes.Status200OK)]
-        [ProducesResponseType(typeof(BaseResponse<AuthResponse>), StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> VerifyOtp([FromBody] VerifyOtpRequest request)
         {
             var result = await _authService.VerifyOtpAsync(request);
@@ -69,8 +63,6 @@ namespace ShopBackend.Controllers
         /// Resend OTP code
         /// </summary>
         [HttpPost("resend-otp")]
-        [ProducesResponseType(typeof(BaseResponse<AuthResponse>), StatusCodes.Status200OK)]
-        [ProducesResponseType(typeof(BaseResponse<AuthResponse>), StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> ResendOtp([FromBody] ResendOtpRequest request)
         {
             var loginRequest = new LoginRequest
@@ -91,8 +83,6 @@ namespace ShopBackend.Controllers
         /// Refresh access token using refresh token
         /// </summary>
         [HttpPost("refresh-token")]
-        [ProducesResponseType(typeof(BaseResponse<AuthResponse>), StatusCodes.Status200OK)]
-        [ProducesResponseType(typeof(BaseResponse<AuthResponse>), StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> RefreshToken([FromBody] RefreshTokenRequest request)
         {
             var result = await _authService.RefreshTokenAsync(request.RefreshToken);
@@ -108,8 +98,6 @@ namespace ShopBackend.Controllers
         /// </summary>
         [Authorize]
         [HttpPost("toggle-2fa")]
-        [ProducesResponseType(typeof(BaseResponse<TwoFactorStatusResponse>), StatusCodes.Status200OK)]
-        [ProducesResponseType(typeof(BaseResponse<TwoFactorStatusResponse>), StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> ToggleTwoFactor([FromBody] TwoFactorToggleRequest request)
         {
             var userId = GetUserId();
@@ -131,6 +119,34 @@ namespace ShopBackend.Controllers
         {
             var userId = GetUserId();
             var result = await _authService.LogoutAsync(userId);
+
+            if (!result.Success)
+                return BadRequest(result);
+
+            return Ok(result);
+        }
+
+        /// <summary>
+        /// Request a PIN reset code using the account email
+        /// </summary>
+        [HttpPost("forgot-password")]
+        public async Task<IActionResult> ForgotPassword([FromBody] ForgotPasswordRequest request)
+        {
+            var result = await _authService.ForgotPasswordAsync(request);
+
+            if (!result.Success)
+                return BadRequest(result);
+
+            return Ok(result);
+        }
+
+        /// <summary>
+        /// Reset PIN with email and OTP code
+        /// </summary>
+        [HttpPost("reset-password")]
+        public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordRequest request)
+        {
+            var result = await _authService.ResetPasswordAsync(request);
 
             if (!result.Success)
                 return BadRequest(result);

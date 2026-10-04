@@ -124,7 +124,8 @@ builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IAdminUserService, AdminUserService>();
 builder.Services.AddScoped<ITokenService, TokenService>();
-    builder.Services.AddScoped<ISmsService, SmsService>();
+builder.Services.AddScoped<ISmsService, SmsService>();
+builder.Services.AddScoped<IEmailService, EmailService>();
 
 builder.Services.AddScoped<IAuditService, AuditService>();
 builder.Services.AddScoped<ILicenseService, LicenseService>();
