@@ -41,8 +41,8 @@ namespace Shop.Infrastructure.Services
                 if (!PhoneNumberValidator.IsValid(request.PhoneNumber))
                 {
                     return BaseResponse<AuthResponse>.ErrorResponse(
-                        "Invalid phone number format. Use format: +1234567890",
-                        new List<string> { "Phone number must start with + and contain 10-15 digits" }
+                        "Invalid phone number format. Use +92... or 03... with 9–13 digits",
+                        new List<string> { "Phone number must start with +92 or 03 and contain 9–13 digits" }
                     );
                 }
 
@@ -182,7 +182,9 @@ namespace Shop.Infrastructure.Services
 
                 if (AdminUserService.IsSubscriptionExpired(user))
                 {
-                    return BaseResponse<AuthResponse>.ErrorResponse("Subscription expired");
+                    return BaseResponse<AuthResponse>.ErrorResponse(
+                        "Your subscription has expired. Please contact your administrator to renew."
+                    );
                 }
 
                 // Check if 2FA is enabled
@@ -325,7 +327,9 @@ namespace Shop.Infrastructure.Services
                 if (AdminUserService.IsSubscriptionExpired(user))
                 {
                     await _unitOfWork.RollbackTransactionAsync();
-                    return BaseResponse<AuthResponse>.ErrorResponse("Subscription expired");
+                    return BaseResponse<AuthResponse>.ErrorResponse(
+                        "Your subscription has expired. Please contact your administrator to renew."
+                    );
                 }
 
                 var otp = await _unitOfWork.OtpCodes.GetValidOtpAsync(user.Id, request.OtpCode);
@@ -417,7 +421,9 @@ namespace Shop.Infrastructure.Services
                 if (AdminUserService.IsSubscriptionExpired(tokenEntity.User))
                 {
                     await _unitOfWork.RollbackTransactionAsync();
-                    return BaseResponse<AuthResponse>.ErrorResponse("Subscription expired");
+                    return BaseResponse<AuthResponse>.ErrorResponse(
+                        "Your subscription has expired. Please contact your administrator to renew."
+                    );
                 }
 
                 // Revoke old token

@@ -259,7 +259,7 @@ namespace Shop.Infrastructure.Services
             var errors = new List<string>();
 
             if (!PhoneNumberValidator.IsValid(request.PhoneNumber))
-                errors.Add("Invalid phone number format. Use format: +1234567890");
+                errors.Add("Invalid phone number format. Use +92... or 03... with 9–13 digits");
 
             if (!PinValidator.IsValid(request.Pin, AppConstants.PinLength))
                 errors.Add($"PIN must be exactly {AppConstants.PinLength} digits");
@@ -284,7 +284,7 @@ namespace Shop.Infrastructure.Services
             var errors = new List<string>();
 
             if (!PhoneNumberValidator.IsValid(request.PhoneNumber))
-                errors.Add("Invalid phone number format. Use format: +1234567890");
+                errors.Add("Invalid phone number format. Use +92... or 03... with 9–13 digits");
 
             if (!string.IsNullOrWhiteSpace(request.Pin))
             {
