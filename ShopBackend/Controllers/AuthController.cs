@@ -40,7 +40,7 @@ namespace ShopBackend.Controllers
             var result = await _authService.LoginAsync(request);
 
             if (!result.Success)
-                return Unauthorized(result);
+                return MapAuthFailure(result);
 
             return Ok(result);
         }
@@ -54,7 +54,7 @@ namespace ShopBackend.Controllers
             var result = await _authService.VerifyOtpAsync(request);
 
             if (!result.Success)
-                return Unauthorized(result);
+                return MapAuthFailure(result);
 
             return Ok(result);
         }
@@ -158,6 +158,26 @@ namespace ShopBackend.Controllers
         {
             var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             return Guid.Parse(userIdClaim!);
+        }
+
+        /// <summary>
+        /// Valid credentials with a business-rule block (expired subscription / deactivated)
+        /// return 403 so the client can show the message without treating it as a session expiry.
+        /// </summary>
+        private IActionResult MapAuthFailure(BaseResponse<AuthResponse> result)
+        {
+            if (IsForbiddenAuthMessage(result.Message))
+                return StatusCode(StatusCodes.Status403Forbidden, result);
+
+            return Unauthorized(result);
+        }
+
+        private static bool IsForbiddenAuthMessage(string? message)
+        {
+            if (string.IsNullOrWhiteSpace(message)) return false;
+
+            return message.Contains("subscription has expired", StringComparison.OrdinalIgnoreCase)
+                || message.Contains("deactivated", StringComparison.OrdinalIgnoreCase);
         }
     }
 }
