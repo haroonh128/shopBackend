@@ -61,6 +61,111 @@ namespace Shop.Infrastructure.Services
             }
         }
 
+        public async Task<BaseResponse<FollowUpListResponse>> GetFollowUpsAsync(Guid userId)
+        {
+            try
+            {
+                var practice = await _practiceService.GetOrCreatePracticeEntityAsync(userId);
+                var doctors = (await _unitOfWork.Doctors.GetByPracticeIdAsync(practice.Id))
+                    .Where(d => d.Active && !d.IsDeleted)
+                    .ToList();
+
+                var linked = doctors.Where(d => d.UserId == userId).ToList();
+                Doctor? doctor = linked.Count == 1 ? linked[0] : null;
+                if (doctor == null && linked.Count == 0 && doctors.Count == 1)
+                    doctor = doctors[0];
+
+                if (doctor == null)
+                {
+                    var notice = doctors.Count == 0
+                        ? "Add a doctor before follow-ups can be listed."
+                        : "This login is not linked to one doctor. Follow-ups are listed only for the doctor tied to the signed-in account.";
+                    return BaseResponse<FollowUpListResponse>.SuccessResponse(new FollowUpListResponse
+                    {
+                        DoctorLinked = false,
+                        Notice = notice
+                    });
+                }
+
+                var consultations = (await _unitOfWork.Consultations.FindAsync(c =>
+                        c.PracticeId == practice.Id && c.DoctorId == doctor.Id && !c.IsDeleted))
+                    .ToList();
+
+                var pending = consultations
+                    .GroupBy(c => c.PatientId)
+                    .Select(g => g
+                        .OrderByDescending(c => c.VisitDate)
+                        .ThenByDescending(c => c.CreatedAt)
+                        .First())
+                    .Where(c => c.FollowUpRequired)
+                    .ToList();
+
+                if (pending.Count == 0)
+                {
+                    return BaseResponse<FollowUpListResponse>.SuccessResponse(new FollowUpListResponse
+                    {
+                        DoctorLinked = true,
+                        DoctorName = doctor.FullName,
+                        Items = new List<FollowUpListItemResponse>()
+                    });
+                }
+
+                var patientIds = pending.Select(c => c.PatientId).Distinct().ToList();
+                var consultationIds = pending.Select(c => c.Id).ToList();
+                var patients = (await _unitOfWork.Patients.FindAsync(p =>
+                        p.PracticeId == practice.Id && patientIds.Contains(p.Id) && !p.IsDeleted))
+                    .ToDictionary(p => p.Id);
+                var tests = (await _unitOfWork.ConsultationTests.FindAsync(t =>
+                        consultationIds.Contains(t.ConsultationId) && !t.IsDeleted))
+                    .GroupBy(t => t.ConsultationId)
+                    .ToDictionary(g => g.Key, g => g.Select(t => t.TestName).Where(n => !string.IsNullOrWhiteSpace(n)).ToList());
+
+                var today = DateTime.UtcNow.Date;
+                var items = new List<FollowUpListItemResponse>();
+                foreach (var consultation in pending)
+                {
+                    if (!patients.TryGetValue(consultation.PatientId, out var patient))
+                        continue;
+
+                    items.Add(new FollowUpListItemResponse
+                    {
+                        ConsultationId = consultation.Id,
+                        PatientId = patient.Id,
+                        PatientName = patient.FullName,
+                        PatientMRNumber = patient.MRNumber,
+                        ContactNumber = patient.ContactNumber,
+                        Allergies = patient.Allergies,
+                        VisitDate = consultation.VisitDate,
+                        VisitNumber = consultation.VisitNumber,
+                        ChiefComplaint = consultation.ChiefComplaint,
+                        Advice = consultation.Advice,
+                        FollowUpDate = consultation.FollowUpDate,
+                        FollowUpNotes = consultation.FollowUpNotes,
+                        DoctorName = doctor.FullName,
+                        Tests = tests.TryGetValue(consultation.Id, out var names) ? names : new List<string>(),
+                        Overdue = consultation.FollowUpDate.HasValue && consultation.FollowUpDate.Value.Date < today
+                    });
+                }
+
+                items = items
+                    .OrderBy(i => i.FollowUpDate ?? DateTime.MaxValue)
+                    .ThenBy(i => i.PatientName)
+                    .ToList();
+
+                return BaseResponse<FollowUpListResponse>.SuccessResponse(new FollowUpListResponse
+                {
+                    DoctorLinked = true,
+                    DoctorName = doctor.FullName,
+                    Items = items
+                });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error listing follow-ups for user {UserId}", userId);
+                return BaseResponse<FollowUpListResponse>.ErrorResponse("An error occurred", new List<string> { ex.Message });
+            }
+        }
+
         public async Task<BaseResponse<ConsultationDetailsResponse>> GetByIdAsync(Guid userId, Guid id)
         {
             try
@@ -83,9 +188,10 @@ namespace Shop.Infrastructure.Services
         {
             try
             {
+                Normalize(request);
                 var errors = Validate(request);
                 if (errors.Count > 0)
-                    return BaseResponse<ConsultationDetailsResponse>.ErrorResponse("Validation failed", errors);
+                    return BaseResponse<ConsultationDetailsResponse>.ErrorResponse(string.Join(". ", errors), errors);
 
                 var practice = await _practiceService.GetOrCreatePracticeEntityAsync(userId);
                 var patient = await _unitOfWork.Patients.GetByIdForPracticeAsync(practice.Id, request.PatientId);
@@ -149,9 +255,10 @@ namespace Shop.Infrastructure.Services
         {
             try
             {
+                Normalize(request);
                 var errors = Validate(request);
                 if (errors.Count > 0)
-                    return BaseResponse<ConsultationDetailsResponse>.ErrorResponse("Validation failed", errors);
+                    return BaseResponse<ConsultationDetailsResponse>.ErrorResponse(string.Join(". ", errors), errors);
 
                 var practice = await _practiceService.GetOrCreatePracticeEntityAsync(userId);
                 var consultation = await _unitOfWork.Consultations.GetByIdForPracticeAsync(practice.Id, id);
@@ -463,6 +570,20 @@ namespace Shop.Infrastructure.Services
             return $"VIS-{next:D6}";
         }
 
+        private static void Normalize(ConsultationRequest request)
+        {
+            if (!request.FollowUpRequired)
+            {
+                request.FollowUpDate = null;
+                request.FollowUpNotes = null;
+                return;
+            }
+
+            request.FollowUpNotes = string.IsNullOrWhiteSpace(request.FollowUpNotes)
+                ? null
+                : request.FollowUpNotes.Trim();
+        }
+
         private static List<string> Validate(ConsultationRequest request)
         {
             var errors = new List<string>();
@@ -472,8 +593,10 @@ namespace Shop.Infrastructure.Services
                 errors.Add("Doctor is required");
             if (request.ConsultationFee < 0)
                 errors.Add("Consultation fee cannot be negative");
-            if (request.FollowUpRequired && request.FollowUpDate.HasValue && request.FollowUpDate.Value.Date < DateTime.UtcNow.Date.AddDays(-1))
-                errors.Add("Follow-up date is invalid");
+            if (request.FollowUpRequired && !request.FollowUpDate.HasValue)
+                errors.Add("Follow-up date is required when follow-up is required");
+            if (request.FollowUpRequired && string.IsNullOrWhiteSpace(request.FollowUpNotes))
+                errors.Add("Follow-up reason is required when follow-up is required");
             if (request.Vitals != null)
             {
                 if (request.Vitals.Height.HasValue && request.Vitals.Height <= 0)
