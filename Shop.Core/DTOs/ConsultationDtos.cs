@@ -13,6 +13,33 @@ namespace Shop.Core.DTOs
         public decimal ConsultationFee { get; set; }
     }
 
+    public class FollowUpListResponse
+    {
+        public bool DoctorLinked { get; set; }
+        public string? DoctorName { get; set; }
+        public string? Notice { get; set; }
+        public List<FollowUpListItemResponse> Items { get; set; } = new();
+    }
+
+    public class FollowUpListItemResponse
+    {
+        public Guid ConsultationId { get; set; }
+        public Guid PatientId { get; set; }
+        public string PatientName { get; set; } = string.Empty;
+        public string PatientMRNumber { get; set; } = string.Empty;
+        public string ContactNumber { get; set; } = string.Empty;
+        public string? Allergies { get; set; }
+        public DateTime VisitDate { get; set; }
+        public string VisitNumber { get; set; } = string.Empty;
+        public string? ChiefComplaint { get; set; }
+        public string? Advice { get; set; }
+        public DateTime? FollowUpDate { get; set; }
+        public string? FollowUpNotes { get; set; }
+        public string DoctorName { get; set; } = string.Empty;
+        public List<string> Tests { get; set; } = new();
+        public bool Overdue { get; set; }
+    }
+
     public class ConsultationVitalsDto
     {
         public decimal? Temperature { get; set; }

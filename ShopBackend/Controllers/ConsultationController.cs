@@ -18,6 +18,15 @@ namespace ShopBackend.Controllers
             _consultationService = consultationService;
         }
 
+        [HttpGet("follow-ups")]
+        [ProducesResponseType(typeof(BaseResponse<FollowUpListResponse>), StatusCodes.Status200OK)]
+        public async Task<IActionResult> GetFollowUps()
+        {
+            var result = await _consultationService.GetFollowUpsAsync(GetUserId());
+            if (!result.Success) return BadRequest(result);
+            return Ok(result);
+        }
+
         [HttpGet("{id:guid}")]
         [ProducesResponseType(typeof(BaseResponse<ConsultationDetailsResponse>), StatusCodes.Status200OK)]
         public async Task<IActionResult> GetById(Guid id)
