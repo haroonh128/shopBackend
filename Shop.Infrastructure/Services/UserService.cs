@@ -80,7 +80,7 @@ namespace Shop.Infrastructure.Services
                 }
 
                 // Check if new phone number is already in use
-                if (await _unitOfWork.Users.PhoneNumberExistsAsync(request?.NewPhoneNumber))
+                if (await _unitOfWork.Users.PhoneNumberExistsAsync(request.NewPhoneNumber, userId))
                 {
                     return BaseResponse<UserProfileResponse>.ErrorResponse(
                         "Phone number already in use"

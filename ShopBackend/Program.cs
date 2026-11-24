@@ -232,9 +232,12 @@ builder.Services.AddCors(options =>
 
     options.AddPolicy("ConfiguredOrigins", policy =>
     {
-        policy.WithOrigins(allowedOrigins)
+        // Credentialed browser calls (fetch credentials: "include") are rejected
+        // unless the response echoes the origin AND Access-Control-Allow-Credentials: true.
+        policy.SetIsOriginAllowed(origin => IsAllowedOrigin(origin, allowedOrigins))
               .AllowAnyMethod()
-              .AllowAnyHeader();
+              .AllowAnyHeader()
+              .AllowCredentials();
     });
 });
 builder.Services.AddAuthorization();
@@ -329,3 +332,17 @@ app.MapHealthChecks("/health");
 }
 
 app.Run();
+
+static bool IsAllowedOrigin(string origin, IReadOnlyCollection<string> allowedOrigins)
+{
+    if (allowedOrigins.Contains(origin, StringComparer.OrdinalIgnoreCase))
+        return true;
+
+    // Local CRA/Vite ports change; the browser origin is still the developer's machine.
+    if (!Uri.TryCreate(origin, UriKind.Absolute, out var uri))
+        return false;
+
+    return uri.Scheme is "http" or "https"
+        && (uri.Host.Equals("localhost", StringComparison.OrdinalIgnoreCase)
+            || uri.Host.Equals("127.0.0.1", StringComparison.OrdinalIgnoreCase));
+}

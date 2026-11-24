@@ -1,4 +1,5 @@
-﻿using Shop.Entities;
+﻿using Shop.Common;
+using Shop.Entities;
 using Shop.Core.Interfaces.Repositories;
 using Shop.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
@@ -16,9 +17,16 @@ namespace Shop.Infrastructure.Repositories
 
         public async Task<User?> GetByPhoneNumberAsync(string phoneNumber)
         {
+            // 03001234567 and +923001234567 are the same subscriber.
+            var forms = PhoneNumberValidator.EquivalentForms(phoneNumber);
+            if (forms.Count == 0)
+                return null;
+
             return await DbSet
                 .AsNoTracking()
-                .FirstOrDefaultAsync(u => u.PhoneNumber == phoneNumber && !u.IsDeleted);
+                .Where(u => forms.Contains(u.PhoneNumber) && !u.IsDeleted)
+                .OrderByDescending(u => u.PhoneNumber == phoneNumber)
+                .FirstOrDefaultAsync();
         }
 
         public async Task<User?> GetByEmailAsync(string email)
@@ -31,11 +39,14 @@ namespace Shop.Infrastructure.Repositories
 
         public async Task<bool> PhoneNumberExistsAsync(string phoneNumber, Guid? excludeUserId = null)
         {
-            var query = DbSet.Where(u => u.PhoneNumber == phoneNumber && !u.IsDeleted);
+            // 03001234567 and +923001234567 count as one number.
+            var forms = PhoneNumberValidator.EquivalentForms(phoneNumber);
+            if (forms.Count == 0)
+                return false;
+
+            var query = DbSet.Where(u => forms.Contains(u.PhoneNumber) && !u.IsDeleted);
             if (excludeUserId.HasValue)
-            {
                 query = query.Where(u => u.Id != excludeUserId.Value);
-            }
 
             return await query.AnyAsync();
         }
